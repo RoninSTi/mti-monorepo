@@ -83,10 +83,11 @@ Plans:
   5. Application parses sensor fields (Serial, PartNum, ReadRate, Samples, etc.)
   6. Application selects first connected sensor or specific sensor from config
   7. Application handles case when no sensors are connected (logs warning, exits gracefully)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD during planning
+- [ ] 04-01-PLAN.md -- Update types (SensorMetadata, config), create authenticate function, add connection state methods
+- [ ] 04-02-PLAN.md -- Create sensor discovery function, wire auth+discovery flow into main.ts
 
 ### Phase 5: Acquisition & Notifications
 **Goal**: Trigger vibration readings, receive async notifications, and display waveform data
@@ -133,6 +134,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 1. Foundation & Configuration | 1/1 | Complete | 2026-02-07 |
 | 2. Connection Management | 2/2 | Complete | 2026-02-07 |
 | 3. Message Infrastructure | 3/3 | Complete | 2026-02-07 |
-| 4. Authentication & Discovery | 0/TBD | Not started | - |
+| 4. Authentication & Discovery | 0/2 | Not started | - |
 | 5. Acquisition & Notifications | 0/TBD | Not started | - |
 | 6. Testing & Documentation | 0/TBD | Not started | - |
