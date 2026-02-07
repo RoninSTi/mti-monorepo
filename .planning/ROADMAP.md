@@ -46,10 +46,11 @@ Plans:
   4. Application implements exponential backoff reconnection (1s, 2s, 4s up to 30s max)
   5. Heartbeat/ping-pong detects connection health (30s interval, configurable)
   6. Application shuts down gracefully with cleanup (close WebSocket, clear timers)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD during planning
+- [ ] 02-01-PLAN.md -- Install ws, ConnectionState types, ExponentialBackoff, HeartbeatManager
+- [ ] 02-02-PLAN.md -- WebSocketConnection class and main.ts graceful shutdown integration
 
 ### Phase 3: Message Infrastructure
 **Goal**: Implement command/response pattern with message correlation, timeout handling, and error processing
@@ -128,7 +129,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Configuration | 1/1 | Complete | 2026-02-07 |
-| 2. Connection Management | 0/TBD | Not started | - |
+| 2. Connection Management | 0/2 | Not started | - |
 | 3. Message Infrastructure | 0/TBD | Not started | - |
 | 4. Authentication & Discovery | 0/TBD | Not started | - |
 | 5. Acquisition & Notifications | 0/TBD | Not started | - |
