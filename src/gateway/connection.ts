@@ -16,6 +16,7 @@ export class WebSocketConnection {
   private heartbeatManager: HeartbeatManager;
   private isShuttingDown: boolean = false;
   private onMessageCallback: ((data: string) => void) | null = null;
+  private onOpenCallback: (() => void) | null = null;
 
   constructor(config: ConnectionConfig) {
     this.config = config;
@@ -36,6 +37,13 @@ export class WebSocketConnection {
    */
   onMessage(callback: (data: string) => void): void {
     this.onMessageCallback = callback;
+  }
+
+  /**
+   * Register callback for connection open event
+   */
+  onOpen(callback: () => void): void {
+    this.onOpenCallback = callback;
   }
 
   /**
@@ -141,6 +149,11 @@ export class WebSocketConnection {
     this.setState(ConnectionState.CONNECTED);
     this.reconnectManager.resetBackoff();
     this.heartbeatManager.start((msg) => this.send(msg));
+
+    // Invoke onOpen callback if registered
+    if (this.onOpenCallback) {
+      this.onOpenCallback();
+    }
   }
 
   /**
