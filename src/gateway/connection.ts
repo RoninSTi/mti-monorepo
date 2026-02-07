@@ -39,6 +39,25 @@ export class WebSocketConnection {
   }
 
   /**
+   * Mark connection as authenticated after POST_LOGIN succeeds.
+   * Only valid transition: CONNECTED -> AUTHENTICATED.
+   */
+  markAuthenticated(): void {
+    if (this.state !== ConnectionState.CONNECTED) {
+      logger.warn(`Cannot mark authenticated from state: ${this.state}`);
+      return;
+    }
+    this.setState(ConnectionState.AUTHENTICATED);
+  }
+
+  /**
+   * Check if connection is authenticated
+   */
+  isAuthenticated(): boolean {
+    return this.state === ConnectionState.AUTHENTICATED;
+  }
+
+  /**
    * Initiate connection to gateway
    */
   connect(): void {
