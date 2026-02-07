@@ -161,17 +161,17 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CFG-01 | Phase 1 | Pending |
-| CFG-02 | Phase 1 | Pending |
-| CFG-03 | Phase 1 | Pending |
-| CFG-04 | Phase 1 | Pending |
-| CFG-05 | Phase 1 | Pending |
-| CODE-01 | Phase 1 | Pending |
-| CODE-02 | Phase 1 | Pending |
-| CODE-03 | Phase 1 | Pending |
-| CODE-04 | Phase 1 | Pending |
-| CODE-05 | Phase 1 | Pending |
-| TYPE-05 | Phase 1 | Pending |
+| CFG-01 | Phase 1 | Complete |
+| CFG-02 | Phase 1 | Complete |
+| CFG-03 | Phase 1 | Complete |
+| CFG-04 | Phase 1 | Complete |
+| CFG-05 | Phase 1 | Complete |
+| CODE-01 | Phase 1 | Complete |
+| CODE-02 | Phase 1 | Complete |
+| CODE-03 | Phase 1 | Complete |
+| CODE-04 | Phase 1 | Complete |
+| CODE-05 | Phase 1 | Complete |
+| TYPE-05 | Phase 1 | Complete |
 | CONN-01 | Phase 2 | Pending |
 | CONN-02 | Phase 2 | Pending |
 | CONN-03 | Phase 2 | Pending |

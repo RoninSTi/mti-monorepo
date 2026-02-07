@@ -12,7 +12,7 @@ This roadmap validates the CTC Connect Wireless gateway WebSocket API through si
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation & Configuration** - Project structure, TypeScript setup, configuration loading
+- [x] **Phase 1: Foundation & Configuration** - Project structure, TypeScript setup, configuration loading
 - [ ] **Phase 2: Connection Management** - WebSocket connection with state machine and lifecycle handling
 - [ ] **Phase 3: Message Infrastructure** - Command/response pattern with correlation and timeout handling
 - [ ] **Phase 4: Authentication & Discovery** - Gateway authentication and sensor discovery
@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 1 plan
 
 Plans:
-- [ ] 01-01-PLAN.md -- Project init, config validation, logger, and module structure
+- [x] 01-01-PLAN.md -- Project init, config validation, logger, and module structure
 
 ### Phase 2: Connection Management
 **Goal**: Establish reliable WebSocket connection with state machine and lifecycle handling
@@ -127,7 +127,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Configuration | 0/1 | Planned | - |
+| 1. Foundation & Configuration | 1/1 | Complete | 2026-02-07 |
 | 2. Connection Management | 0/TBD | Not started | - |
 | 3. Message Infrastructure | 0/TBD | Not started | - |
 | 4. Authentication & Discovery | 0/TBD | Not started | - |
