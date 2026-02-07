@@ -30,10 +30,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Configuration loads from environment variables and validates with clear error messages
   3. Logger utility outputs timestamped messages with configurable log levels
   4. Code is organized into modules (types/, gateway/, utils/, config.ts, main.ts)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] TBD during planning
+- [ ] 01-01-PLAN.md -- Project init, config validation, logger, and module structure
 
 ### Phase 2: Connection Management
 **Goal**: Establish reliable WebSocket connection with state machine and lifecycle handling
@@ -41,7 +41,7 @@ Plans:
 **Requirements**: CONN-01, CONN-02, CONN-03, CONN-04, CONN-05, CONN-06
 **Success Criteria** (what must be TRUE):
   1. Application connects to gateway WebSocket endpoint at ws://ip:5000
-  2. Connection state transitions correctly (DISCONNECTED → CONNECTING → CONNECTED → closed)
+  2. Connection state transitions correctly (DISCONNECTED -> CONNECTING -> CONNECTED -> closed)
   3. Connection handles open, close, and error events with appropriate logging
   4. Application implements exponential backoff reconnection (1s, 2s, 4s up to 30s max)
   5. Heartbeat/ping-pong detects connection health (30s interval, configurable)
@@ -123,11 +123,11 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Configuration | 0/TBD | Not started | - |
+| 1. Foundation & Configuration | 0/1 | Planned | - |
 | 2. Connection Management | 0/TBD | Not started | - |
 | 3. Message Infrastructure | 0/TBD | Not started | - |
 | 4. Authentication & Discovery | 0/TBD | Not started | - |
