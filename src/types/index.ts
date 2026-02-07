@@ -1,5 +1,5 @@
-// Gateway API type definitions - populated in Phase 3
-export {};
-
 // Connection management types
 export * from './connection';
+
+// Gateway message types (commands, responses, notifications)
+export * from './messages';
