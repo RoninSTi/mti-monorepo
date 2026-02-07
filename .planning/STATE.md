@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-07)
 ## Current Position
 
 Phase: 4 of 6 (Authentication and Discovery)
-Plan: 1 of 3 (in progress)
+Plan: 2 of 3 (in progress)
 Status: In progress
-Last activity: 2026-02-07 - Completed 04-01-PLAN.md
+Last activity: 2026-02-07 - Completed 04-02-PLAN.md
 
 Progress: [███░░░░░░░] 50% (3/6 phases complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
-- Average duration: 1 min
-- Total execution time: 0.22 hours
+- Total plans completed: 8
+- Average duration: 2 min
+- Total execution time: 0.25 hours
 
 **By Phase:**
 
@@ -30,11 +30,11 @@ Progress: [███░░░░░░░] 50% (3/6 phases complete)
 | 1. Foundation & Configuration | 1/1 | 2min | 2min |
 | 2. Connection Management | 2/2 | 4min | 2min |
 | 3. Message Infrastructure | 3/3 | 6min | 2min |
-| 4. Authentication and Discovery | 1/3 | 1min | 1min |
+| 4. Authentication and Discovery | 2/3 | 3min | 2min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (2min), 03-02 (2min), 03-03 (2min), 04-01 (1min)
-- Trend: Improving velocity
+- Last 5 plans: 03-02 (2min), 03-03 (2min), 04-01 (1min), 04-02 (2min)
+- Trend: Consistent velocity
 
 *Updated after each plan completion*
 
@@ -72,6 +72,10 @@ Recent decisions affecting current work:
 | SENSOR_SERIAL as optional number | 04-01 | Research recommends optional; Serial in metadata is number | Config type changed from required string to optional number |
 | authenticate() returns unknown | 04-01 | POST_LOGIN response structure is open question | Response data logged at debug level for discovery |
 | authenticate() logs email but never password | 04-01 | Security: avoid credential exposure in logs | Only email logged in info message |
+| onOpen callback pattern matches onMessage | 04-02 | Consistency with existing connection callback architecture | Clean lifecycle event handling |
+| discoverSensor() receives preferredSerial parameter | 04-02 | Avoids importing config, improves testability | Function testable with mock CommandClient |
+| SensorMetadataSchema.safeParse() per entry | 04-02 | Invalid entries logged without failing entire discovery | Resilient to partial gateway data issues |
+| Exit code semantics: no sensors (0) vs auth (1) | 04-02 | No sensors is valid state, auth failure is error | Clear distinction for monitoring systems |
 
 ### Pending Todos
 
@@ -83,6 +87,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-07T17:48:00Z (plan execution)
-Stopped at: Completed 04-01-PLAN.md - Created authenticate() function, added markAuthenticated()/isAuthenticated() methods, updated SensorMetadata with Connected field, made SENSOR_SERIAL optional
+Last session: 2026-02-07T17:53:34Z (plan execution)
+Stopped at: Completed 04-02-PLAN.md - Created discoverSensor() function, added onOpen callback to WebSocketConnection, wired full flow in main.ts: connect -> authenticate -> discover -> ready
 Resume file: None
