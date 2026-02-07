@@ -104,10 +104,12 @@ Plans:
   8. Application displays first 10 samples and min/max/mean values for each axis
   9. Application implements timeout for acquisition completion (default 60s)
   10. Application sends POST_UNSUB_CHANGES before shutdown
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD during planning
+- [ ] 05-01-PLAN.md -- Waveform parser (progressive CSV/JSON/Base64) and console display utilities
+- [ ] 05-02-PLAN.md -- Enhance NotificationHandler with EventEmitter, create AcquisitionManager
+- [ ] 05-03-PLAN.md -- Wire acquisition flow into main.ts with subscribe/acquire/unsubscribe/shutdown
 
 ### Phase 6: Testing & Documentation
 **Goal**: Execute comprehensive end-to-end testing, validate edge cases, and document gateway behavior
@@ -135,5 +137,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 2. Connection Management | 2/2 | Complete | 2026-02-07 |
 | 3. Message Infrastructure | 3/3 | Complete | 2026-02-07 |
 | 4. Authentication & Discovery | 2/2 | Complete | 2026-02-07 |
-| 5. Acquisition & Notifications | 0/TBD | Not started | - |
+| 5. Acquisition & Notifications | 0/3 | Not started | - |
 | 6. Testing & Documentation | 0/TBD | Not started | - |
