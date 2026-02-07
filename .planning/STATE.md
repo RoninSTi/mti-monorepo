@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** Validate gateway communication layer works reliably before building full architecture
-**Current focus:** Phase 3 - Message Infrastructure
+**Current focus:** Phase 4 - Authentication and Discovery
 
 ## Current Position
 
-Phase: 3 of 6 (Message Infrastructure)
-Plan: 3 of 3 (complete)
-Status: Phase complete
-Last activity: 2026-02-07 - Completed 03-03-PLAN.md
+Phase: 4 of 6 (Authentication and Discovery)
+Plan: 1 of 3 (in progress)
+Status: In progress
+Last activity: 2026-02-07 - Completed 04-01-PLAN.md
 
 Progress: [███░░░░░░░] 50% (3/6 phases complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 2 min
-- Total execution time: 0.20 hours
+- Total plans completed: 7
+- Average duration: 1 min
+- Total execution time: 0.22 hours
 
 **By Phase:**
 
@@ -30,10 +30,11 @@ Progress: [███░░░░░░░] 50% (3/6 phases complete)
 | 1. Foundation & Configuration | 1/1 | 2min | 2min |
 | 2. Connection Management | 2/2 | 4min | 2min |
 | 3. Message Infrastructure | 3/3 | 6min | 2min |
+| 4. Authentication and Discovery | 1/3 | 1min | 1min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (2min), 03-01 (2min), 03-02 (2min), 03-03 (2min)
-- Trend: Consistent velocity
+- Last 5 plans: 03-01 (2min), 03-02 (2min), 03-03 (2min), 04-01 (1min)
+- Trend: Improving velocity
 
 *Updated after each plan completion*
 
@@ -66,6 +67,11 @@ Recent decisions affecting current work:
 | Zod safeParse for gateway messages | 03-03 | Gateway is untrusted, invalid messages shouldn't crash | Invalid messages logged as warnings, application stays running |
 | MessageRouter logs all received messages | 03-03 | Satisfies CMD-06 requirement for debug tracing | Full message flow visible in debug logs |
 | NotificationHandler callback registry | 03-03 | Phase 5 needs to register handlers for NOT_ types | Flexible notification handling without modifying router |
+| 10-second auth timeout | 04-01 | Authentication should be fast, industry best practice | authenticate() uses AUTH_TIMEOUT_MS = 10_000 |
+| markAuthenticated() validates state transition | 04-01 | Only allow CONNECTED -> AUTHENTICATED, prevent double-auth | Warns and returns if called from wrong state |
+| SENSOR_SERIAL as optional number | 04-01 | Research recommends optional; Serial in metadata is number | Config type changed from required string to optional number |
+| authenticate() returns unknown | 04-01 | POST_LOGIN response structure is open question | Response data logged at debug level for discovery |
+| authenticate() logs email but never password | 04-01 | Security: avoid credential exposure in logs | Only email logged in info message |
 
 ### Pending Todos
 
@@ -77,6 +83,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-07T17:22:20Z (plan execution)
-Stopped at: Completed 03-03-PLAN.md - Phase 3 complete: full message pipeline wired (WebSocket -> MessageRouter -> CommandClient/NotificationHandler), ready for Phase 4 (Authentication Flow)
+Last session: 2026-02-07T17:48:00Z (plan execution)
+Stopped at: Completed 04-01-PLAN.md - Created authenticate() function, added markAuthenticated()/isAuthenticated() methods, updated SensorMetadata with Connected field, made SENSOR_SERIAL optional
 Resume file: None
