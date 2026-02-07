@@ -13,7 +13,7 @@ This roadmap validates the CTC Connect Wireless gateway WebSocket API through si
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & Configuration** - Project structure, TypeScript setup, configuration loading
-- [ ] **Phase 2: Connection Management** - WebSocket connection with state machine and lifecycle handling
+- [x] **Phase 2: Connection Management** - WebSocket connection with state machine and lifecycle handling
 - [ ] **Phase 3: Message Infrastructure** - Command/response pattern with correlation and timeout handling
 - [ ] **Phase 4: Authentication & Discovery** - Gateway authentication and sensor discovery
 - [ ] **Phase 5: Acquisition & Notifications** - Vibration readings with async notifications and output display
@@ -49,8 +49,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md -- Install ws, ConnectionState types, ExponentialBackoff, HeartbeatManager
-- [ ] 02-02-PLAN.md -- WebSocketConnection class and main.ts graceful shutdown integration
+- [x] 02-01-PLAN.md -- Install ws, ConnectionState types, ExponentialBackoff, HeartbeatManager
+- [x] 02-02-PLAN.md -- WebSocketConnection class and main.ts graceful shutdown integration
 
 ### Phase 3: Message Infrastructure
 **Goal**: Implement command/response pattern with message correlation, timeout handling, and error processing
@@ -129,7 +129,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Configuration | 1/1 | Complete | 2026-02-07 |
-| 2. Connection Management | 0/2 | Not started | - |
+| 2. Connection Management | 2/2 | Complete | 2026-02-07 |
 | 3. Message Infrastructure | 0/TBD | Not started | - |
 | 4. Authentication & Discovery | 0/TBD | Not started | - |
 | 5. Acquisition & Notifications | 0/TBD | Not started | - |
