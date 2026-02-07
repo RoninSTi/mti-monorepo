@@ -4,6 +4,9 @@ import { config } from './config';
 import { initLogger, logger } from './utils/logger';
 import { WebSocketConnection } from './gateway/connection';
 import { ConnectionConfig } from './types/connection';
+import { CommandClient } from './gateway/command-client';
+import { MessageRouter } from './gateway/message-router';
+import { NotificationHandler } from './gateway/notification-handler';
 
 // Initialize logger with configured log level
 initLogger(config.LOG_LEVEL);
@@ -39,10 +42,18 @@ const connectionConfig: ConnectionConfig = {
 // Create WebSocket connection
 const connection = new WebSocketConnection(connectionConfig);
 
-// Register message handler (Phase 3 will replace with proper message routing)
-connection.onMessage((data) => {
-  logger.debug('Message received (unhandled):', data.substring(0, 200));
-});
+// Create message infrastructure
+const commandClient = new CommandClient(
+  (msg) => connection.send(msg),
+  config.COMMAND_TIMEOUT
+);
+const notificationHandler = new NotificationHandler();
+const messageRouter = new MessageRouter(commandClient, notificationHandler);
+
+logger.info('Message infrastructure initialized (router, command client, notification handler)');
+
+// Register message handler - route incoming messages through MessageRouter
+connection.onMessage((data) => messageRouter.handleMessage(data));
 
 // Graceful shutdown handling
 let isShuttingDown = false;
@@ -54,6 +65,9 @@ function shutdown(signal: string): void {
   }
   isShuttingDown = true;
   logger.info(`Received ${signal} - starting graceful shutdown`);
+
+  // Clean up message infrastructure first
+  commandClient.cleanup();
 
   connection.close(1000, 'Application shutdown');
 
