@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-07)
 ## Current Position
 
 Phase: 3 of 6 (Message Infrastructure)
-Plan: 1 of 3 (in progress)
+Plan: 2 of 3 (in progress)
 Status: In progress
-Last activity: 2026-02-07 - Completed 03-01-PLAN.md
+Last activity: 2026-02-07 - Completed 03-02-PLAN.md
 
 Progress: [███░░░░░░░] 33% (2/6 phases complete, 3/6 started)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
+- Total plans completed: 5
 - Average duration: 2 min
-- Total execution time: 0.13 hours
+- Total execution time: 0.17 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: [███░░░░░░░] 33% (2/6 phases complete, 3/6 started
 |-------|-------|-------|----------|
 | 1. Foundation & Configuration | 1/1 | 2min | 2min |
 | 2. Connection Management | 2/2 | 4min | 2min |
-| 3. Message Infrastructure | 1/3 | 2min | 2min |
+| 3. Message Infrastructure | 2/3 | 4min | 2min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (2min), 02-01 (2min), 02-02 (2min), 03-01 (2min)
+- Last 5 plans: 02-01 (2min), 02-02 (2min), 03-01 (2min), 03-02 (2min)
 - Trend: Consistent velocity
 
 *Updated after each plan completion*
@@ -60,6 +60,9 @@ Recent decisions affecting current work:
 | Zod z.union() over discriminatedUnion | 03-01 | Zod 4.x API compatibility | All message unions use z.union(), still allows type narrowing |
 | Permissive RTN_DYN Data field | 03-01 | RTN_DYN response structure varies by command | Command client narrows Data type based on command sent |
 | SensorMetadata passthrough | 03-01 | Gateway may return additional undocumented fields | Future-proof against gateway API additions |
+| Native crypto.randomUUID() for correlation IDs | 03-02 | Node.js 20+ built-in, no external dependency | Simpler dependency tree, matches existing patterns |
+| Delete-first pattern for race protection | 03-02 | Prevents both timeout and response from handling same request | Safe against all timing edge cases |
+| Callback-based sendFn in CommandClient | 03-02 | Decouples CommandClient from WebSocketConnection | CommandClient independently testable with mock sendFn |
 
 ### Pending Todos
 
@@ -71,6 +74,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-07T17:14:10Z (plan execution)
-Stopped at: Completed 03-01-PLAN.md - Message type definitions complete, ready for 03-02 (Command Client)
+Last session: 2026-02-07T17:18:33Z (plan execution)
+Stopped at: Completed 03-02-PLAN.md - CommandClient with Promise-based correlation complete, ready for 03-03 (Authentication Client)
 Resume file: None
