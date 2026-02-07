@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-02-07)
 ## Current Position
 
 Phase: 2 of 6 (Connection Management)
-Plan: 1 of 2 (in progress)
-Status: In progress
-Last activity: 2026-02-07 - Completed 02-01-PLAN.md
+Plan: 2 of 2 (complete)
+Status: Phase complete
+Last activity: 2026-02-07 - Completed 02-02-PLAN.md
 
-Progress: [██░░░░░░░░] 25% (1.5/6 phases)
+Progress: [███░░░░░░░] 33% (2/6 phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
+- Total plans completed: 3
 - Average duration: 2 min
-- Total execution time: 0.07 hours
+- Total execution time: 0.1 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1. Foundation & Configuration | 1/1 | 2min | 2min |
-| 2. Connection Management | 1/2 | 2min | 2min |
+| 2. Connection Management | 2/2 | 4min | 2min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (2min), 02-01 (2min)
+- Last 5 plans: 01-01 (2min), 02-01 (2min), 02-02 (2min)
 - Trend: Consistent velocity
 
 *Updated after each plan completion*
@@ -52,6 +52,10 @@ Recent decisions affecting current work:
 | Decorrelated jitter backoff | 02-01 | AWS-recommended pattern reduces thundering herd effect | More distributed reconnection timing under load |
 | Application-level heartbeat | 02-01 | Better control, easier debugging, can log timestamps | Heartbeat flow visible in application logs |
 | Callback-based sendFn in HeartbeatManager | 02-01 | Decouples HeartbeatManager from WebSocket instance | HeartbeatManager is independently testable |
+| Composition pattern for WebSocketConnection | 02-02 | WebSocketConnection composes ReconnectionManager and HeartbeatManager | Clear separation of concerns, independent testing |
+| Callback-based message routing | 02-02 | onMessage() allows Phase 3+ to register handlers without modifying WebSocketConnection | Phase 3 can implement auth protocol flexibly |
+| 2-second graceful shutdown timeout | 02-02 | Prevents hung processes while giving timers time to clear | Application exits cleanly on SIGINT/SIGTERM |
+| Close codes 1000 and 1008 non-reconnectable | 02-02 | 1000=intentional, 1008=policy violation | Only reconnect on abnormal failures |
 
 ### Pending Todos
 
@@ -63,6 +67,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-07T16:49:47Z (plan execution)
-Stopped at: Completed 02-01-PLAN.md - Connection management foundation ready for Plan 02 (WebSocketConnection class)
+Last session: 2026-02-07T16:53:36Z (plan execution)
+Stopped at: Completed 02-02-PLAN.md - Phase 2 complete, ready for Phase 3 (Authentication Flow)
 Resume file: None
