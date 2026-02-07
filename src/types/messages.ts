@@ -149,9 +149,16 @@ export const NotificationMessageSchema = z.union([
 // Sensor metadata from GET_DYN_CONNECTED response
 export const SensorMetadataSchema = z.object({
   Serial: z.number(),
+  Connected: z.number(),  // 1 = connected, 0 = disconnected
+  AccessPoint: z.string().optional(),
   PartNum: z.string(),
   ReadRate: z.number(),
+  GMode: z.number().optional(),
+  FreqMode: z.number().optional(),
+  ReadPeriod: z.number().optional(),
   Samples: z.number(),
+  HwVer: z.string().optional(),
+  FmVer: z.string().optional(),
   Name: z.string().optional(),
 }).passthrough(); // Allow additional unknown fields from gateway
 

@@ -8,7 +8,7 @@ const configSchema = z.object({
   ),
   GATEWAY_EMAIL: z.string().email(),
   GATEWAY_PASSWORD: z.string().min(1),
-  SENSOR_SERIAL: z.string().min(1),
+  SENSOR_SERIAL: z.coerce.number().optional(),
   CONNECTION_TIMEOUT: z.coerce.number().min(1000).default(10000),
   COMMAND_TIMEOUT: z.coerce.number().min(1000).default(30000),
   ACQUISITION_TIMEOUT: z.coerce.number().min(1000).default(60000),
