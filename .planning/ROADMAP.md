@@ -64,10 +64,12 @@ Plans:
   5. Application handles RTN_ERR responses by parsing Attempt and Error fields
   6. All sent commands and received responses are logged for debugging
   7. TypeScript interfaces exist for all command, response, and notification types
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD during planning
+- [ ] 03-01-PLAN.md -- Zod message schemas and TypeScript types for all gateway messages
+- [ ] 03-02-PLAN.md -- CommandClient with correlation ID matching, timeout, and error handling (TDD)
+- [ ] 03-03-PLAN.md -- MessageRouter, NotificationHandler, and main.ts wiring
 
 ### Phase 4: Authentication & Discovery
 **Goal**: Authenticate with gateway and discover connected sensors
@@ -130,7 +132,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 |-------|----------------|--------|-----------|
 | 1. Foundation & Configuration | 1/1 | Complete | 2026-02-07 |
 | 2. Connection Management | 2/2 | Complete | 2026-02-07 |
-| 3. Message Infrastructure | 0/TBD | Not started | - |
+| 3. Message Infrastructure | 0/3 | Not started | - |
 | 4. Authentication & Discovery | 0/TBD | Not started | - |
 | 5. Acquisition & Notifications | 0/TBD | Not started | - |
 | 6. Testing & Documentation | 0/TBD | Not started | - |
