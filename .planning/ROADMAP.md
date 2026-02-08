@@ -208,8 +208,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 11-01-PLAN.md -- Gateway Zod schemas (password handling) and GatewayRepository pagination
-- [ ] 11-02-PLAN.md -- Gateway CRUD routes, app.ts registration, and README documentation
+- [x] 11-01-PLAN.md -- Gateway Zod schemas (password handling) and GatewayRepository pagination
+- [x] 11-02-PLAN.md -- Gateway CRUD routes, app.ts registration, and README documentation
 
 ## Progress
 
@@ -228,4 +228,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 8. Repository Layer | v1.0 | 3/3 | Complete | 2026-02-08 |
 | 9. API Server Foundation | v1.0 | 2/2 | Complete | 2026-02-08 |
 | 10. Factory API | v1.0 | 2/2 | Complete | 2026-02-08 |
-| 11. Gateway API CRUD | v1.0 | 0/2 | Not started | - |
+| 11. Gateway API CRUD | v1.0 | 2/2 | Complete | 2026-02-08 |

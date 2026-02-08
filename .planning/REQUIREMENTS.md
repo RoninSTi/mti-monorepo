@@ -55,15 +55,15 @@ Requirements for Milestone v1.0: Database + API Layer (Phases 7-11). Multi-gatew
 
 ### Gateway CRUD
 
-- [ ] **GATEWAY-01**: Create gateway (POST /api/gateways, encrypt password)
-- [ ] **GATEWAY-02**: List gateways (GET /api/gateways with pagination, filter by factory)
-- [ ] **GATEWAY-03**: Get gateway by ID (GET /api/gateways/:id)
-- [ ] **GATEWAY-04**: Update gateway (PUT /api/gateways/:id, re-encrypt if password changed)
-- [ ] **GATEWAY-05**: Soft delete gateway (DELETE /api/gateways/:id)
-- [ ] **GATEWAY-06**: Passwords are encrypted in database (not plaintext)
-- [ ] **GATEWAY-07**: Cannot retrieve plaintext passwords via API
-- [ ] **GATEWAY-08**: Database errors return 500 with safe error messages
-- [ ] **GATEWAY-09**: Zod schemas for gateway requests/responses
+- [x] **GATEWAY-01**: Create gateway (POST /api/gateways, encrypt password)
+- [x] **GATEWAY-02**: List gateways (GET /api/gateways with pagination, filter by factory)
+- [x] **GATEWAY-03**: Get gateway by ID (GET /api/gateways/:id)
+- [x] **GATEWAY-04**: Update gateway (PUT /api/gateways/:id, re-encrypt if password changed)
+- [x] **GATEWAY-05**: Soft delete gateway (DELETE /api/gateways/:id)
+- [x] **GATEWAY-06**: Passwords are encrypted in database (not plaintext)
+- [x] **GATEWAY-07**: Cannot retrieve plaintext passwords via API
+- [x] **GATEWAY-08**: Database errors return 500 with safe error messages
+- [x] **GATEWAY-09**: Zod schemas for gateway requests/responses
 
 ### Code Quality
 
@@ -73,7 +73,7 @@ Requirements for Milestone v1.0: Database + API Layer (Phases 7-11). Multi-gatew
 - [ ] **QUAL-04**: Error handling follows consistent patterns
 - [ ] **QUAL-05**: Logging provides actionable information
 - [ ] **QUAL-06**: Configuration externalized (environment variables)
-- [ ] **QUAL-07**: README documents setup and usage
+- [x] **QUAL-07**: README documents setup and usage
 - [ ] **QUAL-08**: TypeScript strict mode enabled
 
 ## v1.1 Requirements
@@ -158,22 +158,22 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FACTORY-07 | Phase 10 | Complete |
 | FACTORY-08 | Phase 10 | Complete |
 | FACTORY-09 | Phase 10 | Complete |
-| GATEWAY-01 | Phase 11 | Pending |
-| GATEWAY-02 | Phase 11 | Pending |
-| GATEWAY-03 | Phase 11 | Pending |
-| GATEWAY-04 | Phase 11 | Pending |
-| GATEWAY-05 | Phase 11 | Pending |
-| GATEWAY-06 | Phase 11 | Pending |
-| GATEWAY-07 | Phase 11 | Pending |
-| GATEWAY-08 | Phase 11 | Pending |
-| GATEWAY-09 | Phase 11 | Pending |
+| GATEWAY-01 | Phase 11 | Complete |
+| GATEWAY-02 | Phase 11 | Complete |
+| GATEWAY-03 | Phase 11 | Complete |
+| GATEWAY-04 | Phase 11 | Complete |
+| GATEWAY-05 | Phase 11 | Complete |
+| GATEWAY-06 | Phase 11 | Complete |
+| GATEWAY-07 | Phase 11 | Complete |
+| GATEWAY-08 | Phase 11 | Complete |
+| GATEWAY-09 | Phase 11 | Complete |
 | QUAL-01 | Phase 9 | Complete |
 | QUAL-02 | Phase 8 | Complete |
 | QUAL-03 | Phase 9 | Complete |
 | QUAL-04 | Phase 9 | Complete |
 | QUAL-05 | Phase 9 | Complete |
 | QUAL-06 | Phase 9 | Complete |
-| QUAL-07 | Phase 11 | Pending |
+| QUAL-07 | Phase 11 | Complete |
 | QUAL-08 | Phase 8 | Complete |
 
 **Coverage:**
