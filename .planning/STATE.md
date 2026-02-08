@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-02-08)
 
 Milestone: v1.1 Factory & Gateway Management UI
 Phase: 13 of 17 (Component Architecture)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-02-08 — Completed 13-01-PLAN.md
+Last activity: 2026-02-08 — Completed 13-02-PLAN.md
 
-Progress: [█████████░░░░░░░░░░░] 49% (26 plans complete)
+Progress: [█████████░░░░░░░░░░░] 51% (27 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 26 (M0 + v1.0 + v1.1)
+- Total plans completed: 27 (M0 + v1.0 + v1.1)
 - Average duration: 2 min
-- Total execution time: 0.92 hours
+- Total execution time: 0.95 hours
 
 **By Phase:**
 
@@ -39,11 +39,11 @@ Progress: [█████████░░░░░░░░░░░] 49% (26
 | 10. Factory API | 3/3 | 6min | 2min |
 | 11. Gateway API CRUD | 2/2 | 4min | 2min |
 | 12. Frontend Foundation | 3/3 | 6min | 2min |
-| 13. Component Architecture | 1/3 | 4min | 4min |
+| 13. Component Architecture | 2/3 | 6min | 3min |
 
 **Recent Trend:**
-- Last 5 plans: 12-01 (2min), 12-02 (2min), 12-03 (2min), 13-01 (4min)
-- Trend: Phase 13 started with 4min plan (component library setup)
+- Last 5 plans: 12-02 (2min), 12-03 (2min), 13-01 (4min), 13-02 (2min)
+- Trend: Phase 13 averaging 3min per plan (component architecture)
 
 *Updated after each plan completion*
 
@@ -67,6 +67,9 @@ Recent decisions affecting v1.1 work:
 | shadcn/ui components | Copy-paste components, full control, consistent design | Phase 13 architecture |
 | shadcn CLI with --yes flag | Unattended component installation, reads components.json | Phase 13-01 |
 | React Hook Form | TypeScript-first, excellent validation, good DX | Phases 15-16 forms |
+| createBrowserRouter for routing | Better data loading support, cleaner route configuration | Phase 13-02 |
+| Root route redirects to /factories | Default landing page for factory monitoring app | Phase 13-02 |
+| Layout/pages directory organization | Clear separation between structural components and route endpoints | Phase 13-02 |
 | No authentication in v1.1 | Focus on configuration UI, security in future milestone | All phases |
 
 **Previous milestone decisions (v1.0):**
@@ -91,15 +94,15 @@ None yet.
 
 **Milestone v1.1 Status:**
 - ✅ Phase 12 complete: Frontend foundation with React, Vite, TypeScript, Tailwind CSS v4, React Query, and API client
-- 🔄 Phase 13 in progress: Component architecture (1/3 plans complete)
+- 🔄 Phase 13 in progress: Component architecture (2/3 plans complete)
   - ✅ 13-01: Component library + dependencies (7 UI components, routing, validation)
-  - ⏳ 13-02: Routing & Layout pending
+  - ✅ 13-02: Routing & Layout (AppLayout, Sidebar, 3 placeholder pages, React Router nested routes)
   - ⏳ 13-03: Forms & Validation pending
 
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Completed 13-01-PLAN.md
+Stopped at: Completed 13-02-PLAN.md
 Resume file: None
 
 ---
