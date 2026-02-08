@@ -100,10 +100,11 @@ Plans:
   3. TypeScript interfaces for Factory and Gateway match backend response types exactly
   4. API errors display user-friendly messages (not raw error objects)
   5. Optimistic updates show immediate UI feedback before server confirmation
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD (planning in progress)
+- [ ] 14-01-PLAN.md -- Factory CRUD hooks with query key factory and global error handling
+- [ ] 14-02-PLAN.md -- Gateway CRUD hooks with query key factory and factory filtering
 
 #### Phase 15: Factory Management UI
 **Goal**: Complete factory CRUD interface with validation and user feedback
