@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Connection Management** - WebSocket connection with state machine and lifecycle handling
 - [x] **Phase 3: Message Infrastructure** - Command/response pattern with correlation and timeout handling
 - [x] **Phase 4: Authentication & Discovery** - Gateway authentication and sensor discovery
-- [ ] **Phase 5: Acquisition & Notifications** - Vibration readings with async notifications and output display
+- [x] **Phase 5: Acquisition & Notifications** - Vibration readings with async notifications and output display
 - [ ] **Phase 6: Testing & Documentation** - End-to-end testing, edge cases, and behavior documentation
 
 ## Phase Details
@@ -107,9 +107,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 05-01-PLAN.md -- Waveform parser (progressive CSV/JSON/Base64) and console display utilities
-- [ ] 05-02-PLAN.md -- Enhance NotificationHandler with EventEmitter, create AcquisitionManager
-- [ ] 05-03-PLAN.md -- Wire acquisition flow into main.ts with subscribe/acquire/unsubscribe/shutdown
+- [x] 05-01-PLAN.md -- Waveform parser (progressive CSV/JSON/Base64) and console display utilities
+- [x] 05-02-PLAN.md -- Enhance NotificationHandler with EventEmitter, create AcquisitionManager
+- [x] 05-03-PLAN.md -- Wire acquisition flow into main.ts with subscribe/acquire/unsubscribe/shutdown
 
 ### Phase 6: Testing & Documentation
 **Goal**: Execute comprehensive end-to-end testing, validate edge cases, and document gateway behavior
@@ -137,5 +137,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 2. Connection Management | 2/2 | Complete | 2026-02-07 |
 | 3. Message Infrastructure | 3/3 | Complete | 2026-02-07 |
 | 4. Authentication & Discovery | 2/2 | Complete | 2026-02-07 |
-| 5. Acquisition & Notifications | 0/3 | Not started | - |
+| 5. Acquisition & Notifications | 3/3 | Complete | 2026-02-07 |
 | 6. Testing & Documentation | 0/TBD | Not started | - |
