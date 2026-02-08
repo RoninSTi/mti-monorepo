@@ -57,8 +57,9 @@ export class WebSocketConnection {
     }
     this.setState(ConnectionState.AUTHENTICATED);
 
-    // Start heartbeat now that authentication is complete
-    this.heartbeatManager.start((msg) => this.send(msg));
+    // Discovery: Gateway doesn't support heartbeat messages
+    // Disabled for Milestone 0 spike (short-lived connection, heartbeat not needed)
+    // this.heartbeatManager.start((msg) => this.send(msg));
   }
 
   /**
