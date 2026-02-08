@@ -56,6 +56,9 @@ export class WebSocketConnection {
       return;
     }
     this.setState(ConnectionState.AUTHENTICATED);
+
+    // Start heartbeat now that authentication is complete
+    this.heartbeatManager.start((msg) => this.send(msg));
   }
 
   /**
@@ -148,9 +151,12 @@ export class WebSocketConnection {
     logger.info('WebSocket connection established');
     this.setState(ConnectionState.CONNECTED);
     this.reconnectManager.resetBackoff();
-    this.heartbeatManager.start((msg) => this.send(msg));
 
-    // Invoke onOpen callback if registered
+    // Discovery: Gateway expects POST_LOGIN as FIRST message
+    // Don't start heartbeat yet - will start after authentication
+    // (Heartbeat before auth triggers gateway Python error)
+
+    // Invoke onOpen callback if registered (triggers authentication flow)
     if (this.onOpenCallback) {
       this.onOpenCallback();
     }
