@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-02-08)
 
 Milestone: v1.0 Factory and Gateway CRUD (Database + API Layer)
 Phase: 9 - API Server Foundation
-Plan: 09-01 of 1
+Plan: 09-02 of 2
 Status: Phase complete
-Last activity: 2026-02-08 - Completed 09-01-PLAN.md (API Server Foundation)
+Last activity: 2026-02-08 - Completed 09-02-PLAN.md (Health Check and Server Entry Point)
 
-Progress: [████████░░░] 73% (16/22 plans complete across all milestones)
+Progress: [█████████░░] 77% (17/22 plans complete across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
+- Total plans completed: 17
 - Average duration: 2 min
-- Total execution time: 0.63 hours
+- Total execution time: 0.65 hours
 
 **By Phase:**
 
@@ -35,11 +35,11 @@ Progress: [████████░░░] 73% (16/22 plans complete across a
 | 5. Acquisition and Notifications | 3/3 | 5min | 2min |
 | 7. Database Setup | 2/2 | 5min | 3min |
 | 8. Repository Layer | 3/3 | 11min | 4min |
-| 9. API Server Foundation | 1/1 | 2min | 2min |
+| 9. API Server Foundation | 2/2 | 3min | 2min |
 
 **Recent Trend:**
-- Last 5 plans: 08-01 (3min), 08-02 (5min), 08-03 (3min), 09-01 (2min)
-- Trend: Phase 9 complete, back to 2min execution time
+- Last 5 plans: 08-02 (5min), 08-03 (3min), 09-01 (2min), 09-02 (1min)
+- Trend: Phase 9 complete at 2min avg, fastest plan yet (1min)
 
 *Updated after each plan completion*
 
@@ -78,6 +78,9 @@ Recent decisions affecting current work:
 | Disabled CSP for API server | API-only server returns JSON, not HTML - CSP not needed | Phase 9-01 Helmet plugin |
 | Standardized error response format | All errors return { error: { code, message, statusCode, details? } } | Phase 9-01 error handler |
 | pino-pretty for development logging | Human-readable colored logs in dev, structured JSON in production | Phase 9-01 logger config |
+| Route prefix applied during registration | Routes defined without /api prefix, registered with { prefix: '/api' } | Phase 9-02 route registration |
+| Separate app and server modules | app.ts exports factory for testing, server.ts handles startup/shutdown | Phase 9-02 server entry point |
+| Graceful shutdown closes server then database | Order prevents connection errors during in-flight request completion | Phase 9-02 shutdown handler |
 
 ### Pending Todos
 
@@ -94,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-08T06:23:07Z
-Stopped at: Completed 09-01-PLAN.md (API Server Foundation) - Phase 9 complete (1/1 plans complete)
+Last session: 2026-02-08T06:26:47Z
+Stopped at: Completed 09-02-PLAN.md (Health Check and Server Entry Point) - Phase 9 complete (2/2 plans complete)
 Resume file: None
