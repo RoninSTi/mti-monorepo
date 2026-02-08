@@ -69,9 +69,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 12-01-PLAN.md -- Scaffold Vite + React + TypeScript project with Tailwind CSS v4
-- [ ] 12-02-PLAN.md -- Initialize shadcn/ui components and CSS variable theming
-- [ ] 12-03-PLAN.md -- Configure React Query, API client, TypeScript types, and React Hook Form
+- [x] 12-01-PLAN.md -- Scaffold Vite + React + TypeScript project with Tailwind CSS v4
+- [x] 12-02-PLAN.md -- Initialize shadcn/ui components and CSS variable theming
+- [x] 12-03-PLAN.md -- Configure React Query, API client, TypeScript types, and React Hook Form
 
 #### Phase 13: Component Architecture
 **Goal**: Reusable component library and navigation layout
