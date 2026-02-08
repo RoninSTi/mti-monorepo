@@ -88,10 +88,27 @@ export const ReturnErrorResponseSchema = z.object({
   }),
 });
 
+// RTN_LOGIN: Authentication success response (discovered during testing)
+export const RtnLoginResponseSchema = z.object({
+  Type: z.literal('RTN_LOGIN'),
+  From: z.literal('SERV'),
+  Target: z.literal('UI'),
+  CorrelationId: z.string().uuid().optional(), // Gateway doesn't return CorrelationId
+  Data: z.object({
+    Email: z.string(),
+    First: z.string(),
+    Last: z.string(),
+    Success: z.boolean(),
+    AccessLevel: z.number(),
+    Verified: z.boolean(),
+  }),
+});
+
 // Discriminated union of all response messages
 export const ResponseMessageSchema = z.union([
   ReturnDynResponseSchema,
   ReturnErrorResponseSchema,
+  RtnLoginResponseSchema, // Add RTN_LOGIN
 ]);
 
 // ============================================================================
@@ -191,6 +208,7 @@ export type SendCommand = z.infer<typeof SendCommandSchema>;
 // Response types
 export type ReturnDynResponse = z.infer<typeof ReturnDynResponseSchema>;
 export type ReturnErrorResponse = z.infer<typeof ReturnErrorResponseSchema>;
+export type RtnLoginResponse = z.infer<typeof RtnLoginResponseSchema>;
 export type ResponseMessage = z.infer<typeof ResponseMessageSchema>;
 
 // Notification types
