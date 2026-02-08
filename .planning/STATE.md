@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** Validate gateway communication layer works reliably before building full architecture
-**Current focus:** Phase 4 - Authentication and Discovery
+**Current focus:** Phase 5 - Acquisition and Notifications
 
 ## Current Position
 
-Phase: 4 of 6 (Authentication and Discovery)
-Plan: 2 of 3 (in progress)
+Phase: 5 of 6 (Acquisition and Notifications)
+Plan: 1 of 3 (in progress)
 Status: In progress
-Last activity: 2026-02-07 - Completed 04-02-PLAN.md
+Last activity: 2026-02-07 - Completed 05-01-PLAN.md
 
-Progress: [███░░░░░░░] 50% (3/6 phases complete)
+Progress: [████░░░░░░] 60% (4/6 phases complete - partial)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
+- Total plans completed: 9
 - Average duration: 2 min
-- Total execution time: 0.25 hours
+- Total execution time: 0.28 hours
 
 **By Phase:**
 
@@ -31,9 +31,10 @@ Progress: [███░░░░░░░] 50% (3/6 phases complete)
 | 2. Connection Management | 2/2 | 4min | 2min |
 | 3. Message Infrastructure | 3/3 | 6min | 2min |
 | 4. Authentication and Discovery | 2/3 | 3min | 2min |
+| 5. Acquisition and Notifications | 1/3 | 1min | 1min |
 
 **Recent Trend:**
-- Last 5 plans: 03-02 (2min), 03-03 (2min), 04-01 (1min), 04-02 (2min)
+- Last 5 plans: 03-03 (2min), 04-01 (1min), 04-02 (2min), 05-01 (1min)
 - Trend: Consistent velocity
 
 *Updated after each plan completion*
@@ -76,6 +77,10 @@ Recent decisions affecting current work:
 | discoverSensor() receives preferredSerial parameter | 04-02 | Avoids importing config, improves testability | Function testable with mock CommandClient |
 | SensorMetadataSchema.safeParse() per entry | 04-02 | Invalid entries logged without failing entire discovery | Resilient to partial gateway data issues |
 | Exit code semantics: no sensors (0) vs auth (1) | 04-02 | No sensors is valid state, auth failure is error | Clear distinction for monitoring systems |
+| Progressive parsing strategy (CSV->JSON->Base64) | 05-01 | Waveform encoding format unknown (ACQ-06), need flexible discovery | Parser IS the discovery mechanism for format |
+| Reduce pattern for statistics | 05-01 | Math.min/max(...array) causes stack overflow on large arrays | Handles arrays of any size safely |
+| Generous validation range (±200g) | 05-01 | Actual sensor range unknown during development | Accept valid data during discovery, narrow later |
+| Console.log formatting over console.table | 05-01 | Need reliable, clean output with precise control | Works everywhere, no dependencies, easy alignment |
 
 ### Pending Todos
 
@@ -87,6 +92,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-07T17:53:34Z (plan execution)
-Stopped at: Completed 04-02-PLAN.md - Created discoverSensor() function, added onOpen callback to WebSocketConnection, wired full flow in main.ts: connect -> authenticate -> discover -> ready
+Last session: 2026-02-08T00:01:40Z (plan execution)
+Stopped at: Completed 05-01-PLAN.md - Created progressive waveform parser (CSV/JSON/Base64 strategies) and console display formatter for reading results
 Resume file: None
