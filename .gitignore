@@ -2,3 +2,4 @@ node_modules/
 dist/
 .env
 *.js.map
+docker-compose.override.yml
