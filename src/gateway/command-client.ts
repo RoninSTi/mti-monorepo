@@ -46,12 +46,11 @@ export class CommandClient {
   async sendCommand(command: SendCommand, timeoutMs?: number): Promise<any> {
     const timeout = timeoutMs ?? this.defaultTimeoutMs;
 
-    // Generate and inject correlation ID
+    // Generate correlation ID for internal tracking only
     const correlationId = randomUUID();
-    const commandWithId = {
-      ...command,
-      CorrelationId: correlationId,
-    };
+
+    // Discovery: Gateway does NOT support CorrelationId in requests (causes Python error)
+    // Keep ID for internal FIFO matching, but don't send to gateway
 
     // Create promise with timeout
     return new Promise((resolve, reject) => {
@@ -76,9 +75,11 @@ export class CommandClient {
         sentAt: Date.now(),
       });
 
-      // Serialize and send
-      const message = JSON.stringify(commandWithId);
+      // Serialize and send WITHOUT CorrelationId (gateway doesn't support it)
+      const message = JSON.stringify(command);
       const sent = this.sendFn(message);
+
+      logger.debug(`Sent command: ${command.Type}, CorrelationId: ${correlationId} (internal tracking only)`);
 
       if (!sent) {
         // Connection not available - clean up and reject immediately
