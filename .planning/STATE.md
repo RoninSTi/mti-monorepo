@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-02-08)
 
 Milestone: v1.0 Factory and Gateway CRUD (Database + API Layer)
 Phase: 7 - Database Setup
-Plan: 07-01 of 2
-Status: In progress
-Last activity: 2026-02-08 - Completed 07-01-PLAN.md (Database Infrastructure Setup)
+Plan: 07-02 of 2
+Status: Phase complete
+Last activity: 2026-02-08 - Completed 07-02-PLAN.md (Database Schema Migrations)
 
-Progress: [█████░░░░░░] 50% (11/22 plans complete across all milestones)
+Progress: [██████░░░░░] 55% (12/22 plans complete across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
+- Total plans completed: 13
 - Average duration: 2 min
-- Total execution time: 0.37 hours
+- Total execution time: 0.42 hours
 
 **By Phase:**
 
@@ -33,10 +33,10 @@ Progress: [█████░░░░░░] 50% (11/22 plans complete across a
 | 3. Message Infrastructure | 3/3 | 6min | 2min |
 | 4. Authentication and Discovery | 2/2 | 3min | 2min |
 | 5. Acquisition and Notifications | 3/3 | 5min | 2min |
-| 7. Database Setup | 1/2 | 2min | 2min |
+| 7. Database Setup | 2/2 | 5min | 3min |
 
 **Recent Trend:**
-- Last 5 plans: 05-01 (1min), 05-02 (2min), 05-03 (2min), 07-01 (2min)
+- Last 5 plans: 05-02 (2min), 05-03 (2min), 07-01 (2min), 07-02 (3min)
 - Trend: Consistent velocity
 
 *Updated after each plan completion*
@@ -59,6 +59,9 @@ Recent decisions affecting current work:
 | Split M1 into API-first then orchestration | Can progress while M0 Phase 6 pending | Milestone v1.0 scope |
 | Separate database config module | Modularity between Milestone 0 and v1.0 subsystems | Phase 7-01 |
 | Docker Compose with env defaults | Easy local dev without requiring .env | Phase 7-01 |
+| Append-only migrations (no down()) | Prevent accidental data loss from rollbacks | Phase 7-02 |
+| pgm.func() for JSONB defaults | node-pg-migrate requires function wrapper for proper SQL | Phase 7-02 |
+| Placeholder password encryption in seed | Real encryption deferred to Phase 8 | Phase 7-02 |
 
 ### Pending Todos
 
@@ -74,6 +77,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-08T04:51:19Z
-Stopped at: Completed 07-01-PLAN.md (Database Infrastructure Setup)
+Last session: 2026-02-08T04:57:13Z
+Stopped at: Completed 07-02-PLAN.md (Database Schema Migrations) - Phase 7 complete
 Resume file: None
