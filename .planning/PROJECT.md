@@ -1,48 +1,88 @@
-# Gateway Integration Spike (Milestone 0)
+# Factory Vibration Monitoring Application
 
 ## What This Is
 
-A TypeScript/Node.js technical spike that validates the CTC Connect Wireless gateway WebSocket API before building the full factory vibration monitoring system. Connects to one gateway, discovers sensors, triggers a vibration reading, and parses the returned waveform data to prove the communication layer works as documented.
+A TypeScript/Node.js application for industrial vibration monitoring that connects to CTC Connect Wireless gateways to manage sensors, collect waveform data, and monitor equipment health across multiple factories. Currently building the production data layer and REST API for factory and gateway management.
 
 ## Core Value
 
-Validate that the gateway communication layer works reliably before committing to the full multi-gateway architecture. This de-risks the foundation on which scheduling, persistence, and analysis will be built.
+Build a reliable foundation for multi-gateway factory monitoring: persistent data model, REST API for management operations, and real-time connection orchestration that scales to production workloads.
+
+## Current Milestone: v1.0 Factory and Gateway CRUD (Database + API Layer)
+
+**Goal:** Establish production-ready persistence and REST API for managing factories and gateways, without multi-gateway orchestration yet.
+
+**Target features:**
+- PostgreSQL database with organizations, factories, gateways tables
+- Type-safe repository layer with Kysely query builder
+- REST API with Fastify (Factory CRUD + Gateway CRUD endpoints)
+- Encrypted gateway credential storage (AES-256-GCM)
+- Request validation with Zod schemas
+- Standardized error responses
+
+**Deferred to next milestone:**
+- Multi-gateway connection orchestration (after M0 Phase 6 complete)
+- Gateway lifecycle management (API → connect/disconnect)
+- Real-time connection status monitoring
 
 ## Requirements
 
 ### Validated
 
-(None yet — ship to validate)
+**Milestone 0** (83% complete - Phase 6 pending):
+- ✓ **CONN-01**: WebSocket connection to gateway established — Milestone 0
+- ✓ **AUTH-01**: POST_LOGIN authentication working — Milestone 0
+- ✓ **SUB-01**: Notification subscription via POST_SUB_CHANGES — Milestone 0
+- ✓ **DISC-01**: Sensor discovery via GET_DYN_CONNECTED — Milestone 0
+- ✓ **DISC-02**: Sensor metadata parsing (serial, part number, etc.) — Milestone 0
+- ✓ **ACQ-01**: Trigger reading via TAKE_DYN_READING — Milestone 0
+- ✓ **ACQ-02**: Handle NOT_DYN_READING_STARTED notification — Milestone 0
+- ✓ **ACQ-03**: Handle NOT_DYN_READING with waveform data — Milestone 0
+- ✓ **PARSE-01**: Decode X/Y/Z waveform data (CSV format discovered) — Milestone 0
+- ✓ **OUT-01**: Display waveform statistics — Milestone 0
+- ✓ **ERR-01**: RTN_ERR error handling — Milestone 0
+- ✓ **CLEAN-01**: Clean connection shutdown — Milestone 0
+- ✓ **CODE-01**: Modular architecture (connection, commands, notifications) — Milestone 0
+- ✓ **CODE-02**: TypeScript types for gateway protocol — Milestone 0
+- ✓ **CODE-03**: Configuration externalized (environment variables) — Milestone 0
 
 ### Active
 
-- [ ] **CONN-01**: Establish WebSocket connection to gateway at ws://ip:5000
-- [ ] **AUTH-01**: Authenticate using POST_LOGIN command with email/password
-- [ ] **SUB-01**: Subscribe to change notifications via POST_SUB_CHANGES
-- [ ] **DISC-01**: Discover connected sensors via GET_DYN_CONNECTED
-- [ ] **DISC-02**: Parse sensor metadata (serial, part number, read rate, samples, etc.)
-- [ ] **ACQ-01**: Trigger vibration reading for one sensor via TAKE_DYN_READING
-- [ ] **ACQ-02**: Receive and handle NOT_DYN_READING_STARTED notification
-- [ ] **ACQ-03**: Receive and handle NOT_DYN_READING notification with waveform data
-- [ ] **PARSE-01**: Decode X/Y/Z waveform data (encoding format TBD during testing)
-- [ ] **OUT-01**: Display waveform data summary (sample count, first 10 samples, min/max/mean)
-- [ ] **ERR-01**: Handle RTN_ERR responses with clear error logging
-- [ ] **CLEAN-01**: Unsubscribe and close connection cleanly on exit
-- [ ] **CODE-01**: Modular architecture (separate connection, commands, notifications)
-- [ ] **CODE-02**: TypeScript type definitions for all API messages
-- [ ] **CODE-03**: Configuration externalized (no hardcoded URLs/credentials)
+**Milestone 1: Database + API Layer:**
+- [ ] **DB-01**: PostgreSQL database setup with Docker Compose
+- [ ] **DB-02**: Schema migrations for organizations, factories, gateways tables
+- [ ] **DB-03**: UUID primary keys, soft deletes, JSONB metadata columns
+- [ ] **REPO-01**: Type-safe repository layer with Kysely
+- [ ] **REPO-02**: FactoryRepository (create, findById, findAll, update, softDelete)
+- [ ] **REPO-03**: GatewayRepository (create, findById, findAll, findActive, update, softDelete)
+- [ ] **CRYPTO-01**: Encrypt gateway passwords before storage (AES-256-GCM)
+- [ ] **CRYPTO-02**: Decrypt passwords for gateway connections
+- [ ] **API-01**: Fastify server with CORS, Helmet, Zod validation
+- [ ] **API-02**: Health check endpoint (GET /api/health)
+- [ ] **API-03**: Standardized error responses with codes
+- [ ] **FACTORY-01**: Create factory (POST /api/factories)
+- [ ] **FACTORY-02**: List factories (GET /api/factories with pagination)
+- [ ] **FACTORY-03**: Get factory by ID (GET /api/factories/:id)
+- [ ] **FACTORY-04**: Update factory (PUT /api/factories/:id)
+- [ ] **FACTORY-05**: Soft delete factory (DELETE /api/factories/:id)
+- [ ] **GATEWAY-01**: Create gateway (POST /api/gateways, encrypt password)
+- [ ] **GATEWAY-02**: List gateways (GET /api/gateways with pagination, filter by factory)
+- [ ] **GATEWAY-03**: Get gateway by ID (GET /api/gateways/:id)
+- [ ] **GATEWAY-04**: Update gateway (PUT /api/gateways/:id, re-encrypt if password changed)
+- [ ] **GATEWAY-05**: Soft delete gateway (DELETE /api/gateways/:id)
 
 ### Out of Scope
 
-- Multiple gateway support — single gateway only for validation
-- Database persistence — no storage, just print to console
-- Scheduled acquisition — manual trigger only
-- Waveform analysis (FFT, RMS, etc.) — display raw data only
-- Production error handling/retry logic — log and exit is sufficient
-- Historical data retrieval (GET_DYN_READINGS) — defer to future milestone
-- Temperature/battery-only readings — TAKE_DYN_READING includes temp already
-- Connection pooling — single persistent connection
-- Automated tests — manual verification sufficient for spike
+**This Milestone:**
+- Multi-gateway connection orchestration — next milestone (after M0 Phase 6)
+- Gateway lifecycle management (API → connect/disconnect) — next milestone
+- Real-time connection status monitoring — next milestone
+- Sensor assignment to equipment — Milestone 2
+- Acquisition scheduling — Milestone 3
+- Waveform data persistence — Milestone 3
+- Web UI — future milestone
+- API authentication (JWT/OAuth) — future security milestone
+- Multi-tenancy enforcement — schema supports, but API hardcodes single org for now
 
 ## Context
 
@@ -88,24 +128,29 @@ From CTC Connect Wireless API documentation:
 
 ## Constraints
 
-- **Tech stack**: TypeScript + Node.js 18+ — TypeScript provides type safety for complex API contracts, Node.js async model aligns with WebSocket event-driven architecture
-- **WebSocket library**: `ws` package — standard, well-maintained WebSocket client
-- **Timeline**: ASAP / Days — need to validate quickly and move to Milestone 1
-- **Quality bar**: Balanced — working code with reasonable structure, don't over-engineer
-- **Hardware dependency**: Requires access to physical gateway and at least one connected sensor for testing
-- **Single gateway**: Only one gateway connection for this spike (multi-gateway in future milestones)
-- **No persistence**: No database or file storage (just console output)
+- **Tech stack**: TypeScript + Node.js 18+ — type safety, async model, code sharing between API and CLI
+- **Database**: PostgreSQL 15+ — production-ready, JSONB support, excellent TypeScript ecosystem
+- **API framework**: Fastify 5+ — TypeScript-first, high performance, built-in validation
+- **Query builder**: Kysely — type-safe SQL, no ORM magic, explicit queries
+- **Deployment**: Local development (Docker Compose) — production deployment deferred
+- **Testing**: Manual end-to-end — automated tests deferred to future milestone
+- **Timeline**: Incremental — build foundation without blocking M0 Phase 6 completion
+- **Quality bar**: Production patterns — establish architecture for scale, even if features are limited
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| TypeScript over JavaScript | Type safety for complex API message structures, better tooling, establishes pattern for full system | — Pending |
-| Node.js over other runtimes | Native async/await, excellent WebSocket ecosystem, enables code sharing with future API service | — Pending |
-| `ws` package for WebSocket | Standard, well-maintained, lower-level control vs frameworks | — Pending |
-| Log and exit on errors | Sufficient for spike; production retry logic deferred to future milestones | — Pending |
-| Modular architecture | Separate connection/command/notification concerns to establish patterns for multi-gateway future | — Pending |
-| Environment variables for config | Standard practice; sensitive credentials never committed | — Pending |
+| TypeScript + Node.js | Type safety + async model + code sharing | ✓ Good — Validated in M0 |
+| `ws` package for WebSocket | Standard, well-maintained, lower-level control | ✓ Good — Works reliably in M0 |
+| Modular architecture | Separate concerns for multi-gateway future | ✓ Good — M0 patterns scale to M1 |
+| PostgreSQL over MongoDB | Relational model + JSONB flexibility + TypeScript ecosystem | — Pending |
+| Kysely over ORM | Type-safe SQL without magic, explicit queries | — Pending |
+| Fastify over Express | TypeScript-first, high performance, built-in validation | — Pending |
+| Encrypt (not hash) gateway passwords | Need plaintext to authenticate with gateways | — Pending |
+| Soft deletes | Preserve audit trail, avoid cascading hard deletes | — Pending |
+| In-memory connection state | Ephemeral by nature, only last_seen_at persisted | — Pending |
+| Split M1 into API-first then orchestration | Can progress while M0 Phase 6 pending | — Pending |
 
 ---
-*Last updated: 2026-02-07 after initialization*
+*Last updated: 2026-02-08 after Milestone 1 initialization*
