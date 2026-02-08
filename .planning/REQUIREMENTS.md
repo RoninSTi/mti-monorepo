@@ -117,13 +117,58 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (To be filled by roadmapper) | | |
+| SETUP-01 | Phase 12 | Pending |
+| SETUP-02 | Phase 12 | Pending |
+| SETUP-03 | Phase 12 | Pending |
+| SETUP-04 | Phase 12 | Pending |
+| SETUP-05 | Phase 12 | Pending |
+| SETUP-06 | Phase 12 | Pending |
+| SETUP-07 | Phase 12 | Pending |
+| NAV-01 | Phase 13 | Pending |
+| NAV-02 | Phase 13 | Pending |
+| NAV-03 | Phase 13 | Pending |
+| COMP-01 | Phase 13 | Pending |
+| COMP-02 | Phase 13 | Pending |
+| COMP-03 | Phase 13 | Pending |
+| COMP-04 | Phase 13 | Pending |
+| COMP-05 | Phase 13 | Pending |
+| API-INT-01 | Phase 14 | Pending |
+| API-INT-02 | Phase 14 | Pending |
+| API-INT-03 | Phase 14 | Pending |
+| API-INT-04 | Phase 14 | Pending |
+| API-INT-05 | Phase 14 | Pending |
+| FACTORY-UI-01 | Phase 15 | Pending |
+| FACTORY-UI-02 | Phase 15 | Pending |
+| FACTORY-UI-03 | Phase 15 | Pending |
+| FACTORY-UI-04 | Phase 15 | Pending |
+| FACTORY-UI-05 | Phase 15 | Pending |
+| FACTORY-UI-06 | Phase 15 | Pending |
+| GATEWAY-UI-01 | Phase 16 | Pending |
+| GATEWAY-UI-02 | Phase 16 | Pending |
+| GATEWAY-UI-03 | Phase 16 | Pending |
+| GATEWAY-UI-04 | Phase 16 | Pending |
+| GATEWAY-UI-05 | Phase 16 | Pending |
+| GATEWAY-UI-06 | Phase 16 | Pending |
+| GATEWAY-UI-07 | Phase 16 | Pending |
+| QUAL-UI-01 | Phase 17 | Pending |
+| QUAL-UI-02 | Phase 17 | Pending |
+| QUAL-UI-03 | Phase 17 | Pending |
+| QUAL-UI-04 | Phase 17 | Pending |
+| QUAL-UI-05 | Phase 17 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 36 total
-- Mapped to phases: (pending)
-- Unmapped: (pending)
+- Mapped to phases: 36/36 (100%)
+- Unmapped: 0
+
+**Phase Distribution:**
+- Phase 12 (Frontend Foundation): 7 requirements
+- Phase 13 (Component Architecture): 8 requirements
+- Phase 14 (API Integration Layer): 5 requirements
+- Phase 15 (Factory Management UI): 6 requirements
+- Phase 16 (Gateway Management UI): 7 requirements
+- Phase 17 (Quality & Polish): 5 requirements
 
 ---
 *Requirements defined: 2026-02-08*
-*Last updated: 2026-02-08 after v1.1 milestone initialization*
+*Last updated: 2026-02-08 after v1.1 roadmap creation*
