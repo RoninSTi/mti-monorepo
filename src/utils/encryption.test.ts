@@ -122,10 +122,13 @@ describe('Encryption Utilities', () => {
       const plaintext = 'password123';
       const encrypted = encryptPassword(plaintext, validKey);
 
-      // Tamper with auth tag
+      // Tamper with auth tag - flip a byte in the decoded buffer
+      const authTagBuffer = Buffer.from(encrypted.authTag, 'base64');
+      authTagBuffer[0] = authTagBuffer[0] ^ 0xFF; // Flip all bits in first byte
+
       const tampered: EncryptedData = {
         ...encrypted,
-        authTag: encrypted.authTag.slice(0, -1) + 'X',
+        authTag: authTagBuffer.toString('base64'),
       };
 
       expect(() => decryptPassword(tampered, validKey)).toThrow();
