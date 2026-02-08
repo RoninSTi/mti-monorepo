@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-07)
 ## Current Position
 
 Phase: 5 of 6 (Acquisition and Notifications)
-Plan: 1 of 3 (in progress)
+Plan: 2 of 3
 Status: In progress
-Last activity: 2026-02-07 - Completed 05-01-PLAN.md
+Last activity: 2026-02-08 - Completed 05-02-PLAN.md
 
-Progress: [████░░░░░░] 60% (4/6 phases complete - partial)
+Progress: [████░░░░░░] 65% (4/6 phases complete - partial)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
+- Total plans completed: 10
 - Average duration: 2 min
-- Total execution time: 0.28 hours
+- Total execution time: 0.31 hours
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: [████░░░░░░] 60% (4/6 phases complete - partial)
 | 2. Connection Management | 2/2 | 4min | 2min |
 | 3. Message Infrastructure | 3/3 | 6min | 2min |
 | 4. Authentication and Discovery | 2/3 | 3min | 2min |
-| 5. Acquisition and Notifications | 1/3 | 1min | 1min |
+| 5. Acquisition and Notifications | 2/3 | 3min | 2min |
 
 **Recent Trend:**
-- Last 5 plans: 03-03 (2min), 04-01 (1min), 04-02 (2min), 05-01 (1min)
+- Last 5 plans: 04-01 (1min), 04-02 (2min), 05-01 (1min), 05-02 (2min)
 - Trend: Consistent velocity
 
 *Updated after each plan completion*
@@ -81,6 +81,11 @@ Recent decisions affecting current work:
 | Reduce pattern for statistics | 05-01 | Math.min/max(...array) causes stack overflow on large arrays | Handles arrays of any size safely |
 | Generous validation range (±200g) | 05-01 | Actual sensor range unknown during development | Accept valid data during discovery, narrow later |
 | Console.log formatting over console.table | 05-01 | Need reliable, clean output with precise control | Works everywhere, no dependencies, easy alignment |
+| EventEmitter extension with dual-dispatch | 05-02 | NotificationHandler extends EventEmitter while maintaining backward-compatible callback registration | Enables events.once() Promise-based awaiting, supports both paradigms |
+| Register listeners before trigger | 05-02 | Register notification listeners BEFORE sending TAKE_DYN_READING | Prevents race condition where notification arrives before listener attached |
+| Promise.race() timeout pattern | 05-02 | Use Promise.race() with local timeout helper for all notification waits | Native pattern, no dependencies, explicit timeout control, clear error messages |
+| Non-blocking temperature notification | 05-02 | Temperature awaited separately with 10s timeout, caught and logged, never throws | Temperature optional/informational, should not block or fail acquisition flow |
+| Differential timeout strategy | 05-02 | 30s for NOT_DYN_READING_STARTED, 60s for NOT_DYN_READING, 10s for NOT_DYN_TEMP | Started immediate, acquisition takes time, temperature optional
 
 ### Pending Todos
 
@@ -92,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-08T00:01:40Z (plan execution)
-Stopped at: Completed 05-01-PLAN.md - Created progressive waveform parser (CSV/JSON/Base64 strategies) and console display formatter for reading results
+Last session: 2026-02-08T00:05:42Z (plan execution)
+Stopped at: Completed 05-02-PLAN.md - Enhanced NotificationHandler with EventEmitter (dual-dispatch pattern) and created AcquisitionManager orchestrating subscribe -> trigger -> await -> parse -> display flow using events.once()
 Resume file: None
