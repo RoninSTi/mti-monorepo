@@ -7,22 +7,37 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsx src/main.ts",
+    "dev": "tsx --env-file=.env src/main.ts",
     "start": "node dist/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:migrate": "node-pg-migrate -j ts up",
+    "db:migrate:create": "node-pg-migrate create -j ts -m migrations",
+    "db:seed": "tsx --env-file=.env src/database/seed.ts",
+    "db:reset": "tsx --env-file=.env src/database/reset.ts",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:reset": "docker compose down -v && docker compose up -d"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "pg": "^8.18.0",
     "ws": "^8.19.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/node": "^25.2.1",
+    "@types/pg": "^8.16.0",
     "@types/ws": "^8.18.1",
+    "node-pg-migrate": "^8.0.4",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
+  },
+  "node-pg-migrate": {
+    "migration-file-language": "ts",
+    "migrations-dir": "migrations",
+    "template-file-name": null
   }
 }
