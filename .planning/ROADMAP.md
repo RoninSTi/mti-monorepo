@@ -205,10 +205,11 @@ Plans:
   6. Gateway passwords are never returned in plaintext via API responses
   7. Database errors return 500 with safe error messages (no credential leakage)
   8. README documents setup, configuration, and API usage
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 11-01: [To be planned]
+- [ ] 11-01-PLAN.md -- Gateway Zod schemas (password handling) and GatewayRepository pagination
+- [ ] 11-02-PLAN.md -- Gateway CRUD routes, app.ts registration, and README documentation
 
 ## Progress
 
@@ -227,4 +228,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 8. Repository Layer | v1.0 | 3/3 | Complete | 2026-02-08 |
 | 9. API Server Foundation | v1.0 | 2/2 | Complete | 2026-02-08 |
 | 10. Factory API | v1.0 | 2/2 | Complete | 2026-02-08 |
-| 11. Gateway API CRUD | v1.0 | 0/TBD | Not started | - |
+| 11. Gateway API CRUD | v1.0 | 0/2 | Not started | - |
