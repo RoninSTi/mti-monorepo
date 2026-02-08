@@ -23,13 +23,22 @@ class FactoryRepository {
   /**
    * Find all factories (excludes soft-deleted)
    */
-  async findAll(): Promise<Factory[]> {
-    return await db
+  async findAll(options?: { limit?: number; offset?: number }): Promise<Factory[]> {
+    let query = db
       .selectFrom('factories')
       .selectAll()
       .where('deleted_at', 'is', null)
-      .orderBy('name', 'asc')
-      .execute();
+      .orderBy('name', 'asc');
+
+    if (options?.limit) {
+      query = query.limit(options.limit);
+    }
+
+    if (options?.offset) {
+      query = query.offset(options.offset);
+    }
+
+    return await query.execute();
   }
 
   /**
@@ -83,6 +92,19 @@ class FactoryRepository {
       .where('deleted_at', 'is', null) // Prevent double-delete
       .returningAll()
       .executeTakeFirst();
+  }
+
+  /**
+   * Count total non-deleted factories
+   */
+  async count(): Promise<number> {
+    const result = await db
+      .selectFrom('factories')
+      .select(db.fn.countAll().as('count'))
+      .where('deleted_at', 'is', null)
+      .executeTakeFirstOrThrow();
+
+    return Number(result.count);
   }
 }
 
