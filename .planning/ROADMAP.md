@@ -149,10 +149,12 @@ Plans:
   4. Soft delete queries automatically exclude deleted records (WHERE deleted_at IS NULL)
   5. Gateway passwords are encrypted before storage using AES-256-GCM and decrypt successfully for connections
   6. All repository methods return correctly typed results
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 08-01: [To be planned]
+- [ ] 08-01-PLAN.md -- Kysely connection pool, type generation (kysely-codegen), Zod validation schemas
+- [ ] 08-02-PLAN.md -- AES-256-GCM encryption utilities (TDD)
+- [ ] 08-03-PLAN.md -- FactoryRepository, GatewayRepository, seed data encryption
 
 #### Phase 9: API Server Foundation
 **Goal**: Fastify server running with health check, validation, and error handling
