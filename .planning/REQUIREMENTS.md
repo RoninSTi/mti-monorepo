@@ -132,16 +132,16 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DB-03 | Phase 7 | Complete |
 | DB-04 | Phase 7 | Complete |
 | DB-05 | Phase 7 | Complete |
-| REPO-01 | Phase 8 | Pending |
-| REPO-02 | Phase 8 | Pending |
-| REPO-03 | Phase 8 | Pending |
-| REPO-04 | Phase 8 | Pending |
-| REPO-05 | Phase 8 | Pending |
-| REPO-06 | Phase 8 | Pending |
-| CRYPTO-01 | Phase 8 | Pending |
-| CRYPTO-02 | Phase 8 | Pending |
-| CRYPTO-03 | Phase 8 | Pending |
-| CRYPTO-04 | Phase 8 | Pending |
+| REPO-01 | Phase 8 | Complete |
+| REPO-02 | Phase 8 | Complete |
+| REPO-03 | Phase 8 | Complete |
+| REPO-04 | Phase 8 | Complete |
+| REPO-05 | Phase 8 | Complete |
+| REPO-06 | Phase 8 | Complete |
+| CRYPTO-01 | Phase 8 | Complete |
+| CRYPTO-02 | Phase 8 | Complete |
+| CRYPTO-03 | Phase 8 | Complete |
+| CRYPTO-04 | Phase 8 | Complete |
 | API-01 | Phase 9 | Pending |
 | API-02 | Phase 9 | Pending |
 | API-03 | Phase 9 | Pending |
@@ -168,13 +168,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GATEWAY-08 | Phase 11 | Pending |
 | GATEWAY-09 | Phase 11 | Pending |
 | QUAL-01 | Phase 9 | Pending |
-| QUAL-02 | Phase 8 | Pending |
+| QUAL-02 | Phase 8 | Complete |
 | QUAL-03 | Phase 9 | Pending |
 | QUAL-04 | Phase 9 | Pending |
 | QUAL-05 | Phase 9 | Pending |
 | QUAL-06 | Phase 9 | Pending |
 | QUAL-07 | Phase 11 | Pending |
-| QUAL-08 | Phase 8 | Pending |
+| QUAL-08 | Phase 8 | Complete |
 
 **Coverage:**
 - v1.0 requirements: 46 total
