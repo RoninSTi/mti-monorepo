@@ -72,7 +72,7 @@ export const ReturnDynResponseSchema = z.object({
   Type: z.literal('RTN_DYN'),
   From: z.literal('SERV'),
   Target: z.literal('UI'),
-  CorrelationId: z.string().uuid(),
+  CorrelationId: z.string().uuid().optional(), // Gateway may not return CorrelationId
   Data: z.record(z.string(), z.unknown()), // Permissive: structure varies by command
 });
 
@@ -81,9 +81,9 @@ export const ReturnErrorResponseSchema = z.object({
   Type: z.literal('RTN_ERR'),
   From: z.literal('SERV'),
   Target: z.literal('UI'),
-  CorrelationId: z.string().uuid(),
+  CorrelationId: z.string().uuid().optional(), // Gateway may not return CorrelationId
   Data: z.object({
-    Attempt: z.string(), // String describing what was attempted (e.g., "POST_LOGIN")
+    Attempt: z.string().nullable(), // Can be null per observed gateway behavior
     Error: z.string(), // Error description
   }),
 });

@@ -105,33 +105,51 @@ export class CommandClient {
   handleResponse(message: ResponseMessage): void {
     const { CorrelationId, Type, Data } = message;
 
-    // Look up pending request - delete first for race condition protection
-    const pending = this.pending.get(CorrelationId);
-    if (!pending) {
-      logger.warn(
-        `Received response with unknown CorrelationId: ${CorrelationId} (likely timed out or stale)`
+    // Discovery: CTC gateway does not return CorrelationId - fallback to FIFO matching
+    let correlationId: string;
+    let pending: PendingRequest | undefined;
+
+    if (CorrelationId) {
+      // CorrelationId provided - use exact matching
+      correlationId = CorrelationId;
+      pending = this.pending.get(correlationId);
+      if (!pending) {
+        logger.warn(
+          `Received response with unknown CorrelationId: ${correlationId} (likely timed out or stale)`
+        );
+        return;
+      }
+    } else {
+      // No CorrelationId - match first pending request (FIFO, assumes ordered responses)
+      const entries = Array.from(this.pending.entries());
+      if (entries.length === 0) {
+        logger.warn(`Received ${Type} with no CorrelationId and no pending requests`);
+        return;
+      }
+      [correlationId, pending] = entries[0];
+      logger.debug(
+        `Response missing CorrelationId - matched to first pending: ${correlationId} (FIFO)`
       );
-      return;
     }
 
     // Delete from map (whoever deletes first wins the race)
-    this.pending.delete(CorrelationId);
+    this.pending.delete(correlationId);
     clearTimeout(pending.timeoutId);
 
     // Handle based on response type
     if (Type === 'RTN_ERR') {
       // Error response - reject with details
-      const errorData = Data as { Attempt: string; Error: string };
+      const errorData = Data as { Attempt: string | null; Error: string };
       const error = new Error(
-        `Command error: ${errorData.Error} (Attempt: ${errorData.Attempt}, CorrelationId: ${CorrelationId})`
+        `Command error: ${errorData.Error}${errorData.Attempt ? ` (Attempt: ${errorData.Attempt})` : ''}`
       );
       logger.debug(
-        `Received RTN_ERR: ${errorData.Attempt}, Error: "${errorData.Error}", CorrelationId: ${CorrelationId}`
+        `Received RTN_ERR: ${errorData.Attempt || 'null'}, Error: "${errorData.Error}", CorrelationId: ${correlationId}`
       );
       pending.reject(error);
     } else {
       // Success response - resolve with data
-      logger.debug(`Received ${Type}: CorrelationId: ${CorrelationId}`);
+      logger.debug(`Received ${Type}: CorrelationId: ${correlationId}`);
       pending.resolve(Data);
     }
   }
