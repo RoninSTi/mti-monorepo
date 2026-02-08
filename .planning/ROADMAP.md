@@ -121,10 +121,11 @@ Plans:
   3. X/Y/Z waveform encoding format is documented based on actual gateway responses
   4. Gateway behavior is documented (timeouts, close codes, error messages, timing characteristics)
   5. README exists with setup instructions, configuration options, and usage examples
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD during planning
+- [ ] 06-01-PLAN.md -- Manual test checklist creation and hardware test execution
+- [ ] 06-02-PLAN.md -- Gateway behavior documentation and README
 
 ## Progress
 
@@ -138,4 +139,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. Message Infrastructure | 3/3 | Complete | 2026-02-07 |
 | 4. Authentication & Discovery | 2/2 | Complete | 2026-02-07 |
 | 5. Acquisition & Notifications | 3/3 | Complete | 2026-02-07 |
-| 6. Testing & Documentation | 0/TBD | Not started | - |
+| 6. Testing & Documentation | 0/2 | Not started | - |
