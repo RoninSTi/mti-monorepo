@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-02-08)
 
 Milestone: v1.0 Factory and Gateway CRUD (Database + API Layer)
 Phase: 8 - Repository Layer
-Plan: 08-01 of 3
+Plan: 08-02 of 3
 Status: In progress
-Last activity: 2026-02-08 - Completed 08-01-PLAN.md (Kysely Setup and Type Generation)
+Last activity: 2026-02-08 - Completed 08-02-PLAN.md (Encryption Utilities)
 
-Progress: [██████░░░░░] 59% (13/22 plans complete across all milestones)
+Progress: [███████░░░░] 64% (14/22 plans complete across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
 - Total plans completed: 14
 - Average duration: 2 min
-- Total execution time: 0.47 hours
+- Total execution time: 0.55 hours
 
 **By Phase:**
 
@@ -34,11 +34,11 @@ Progress: [██████░░░░░] 59% (13/22 plans complete across a
 | 4. Authentication and Discovery | 2/2 | 3min | 2min |
 | 5. Acquisition and Notifications | 3/3 | 5min | 2min |
 | 7. Database Setup | 2/2 | 5min | 3min |
-| 8. Repository Layer | 1/3 | 3min | 3min |
+| 8. Repository Layer | 2/3 | 8min | 4min |
 
 **Recent Trend:**
-- Last 5 plans: 05-03 (2min), 07-01 (2min), 07-02 (3min), 08-01 (3min)
-- Trend: Consistent velocity
+- Last 5 plans: 07-01 (2min), 07-02 (3min), 08-01 (3min), 08-02 (5min)
+- Trend: TDD plans take longer (test infrastructure + implementation)
 
 *Updated after each plan completion*
 
@@ -54,7 +54,10 @@ Recent decisions affecting current work:
 | PostgreSQL over MongoDB | Relational model + JSONB flexibility + TypeScript ecosystem | Phase 7 foundation |
 | Kysely over ORM | Type-safe SQL without magic, explicit queries | Phase 8 repository layer |
 | Fastify over Express | TypeScript-first, high performance, built-in validation | Phase 9 API server |
-| Encrypt (not hash) gateway passwords | Need plaintext to authenticate with gateways | Phase 8 encryption utilities |
+| Encrypt (not hash) gateway passwords | Need plaintext to authenticate with gateways | Phase 8 encryption utilities (08-02 complete) |
+| Use AES-256-GCM (not CBC) | Authenticated encryption with integrity checking | Phase 8-02 encryption implementation |
+| Random IV per encryption | Never reuse IV with GCM mode - critical for security | Phase 8-02 encryption implementation |
+| vitest test framework | Modern TypeScript testing, fast, good DX | Phase 8-02 test infrastructure |
 | Soft deletes | Preserve audit trail, avoid cascading hard deletes | Phases 8, 10, 11 |
 | In-memory connection state | Ephemeral by nature, only last_seen_at persisted | Future orchestration work |
 | Split M1 into API-first then orchestration | Can progress while M0 Phase 6 pending | Milestone v1.0 scope |
@@ -82,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-08T05:40:13Z
-Stopped at: Completed 08-01-PLAN.md (Kysely Setup and Type Generation)
+Last session: 2026-02-08T05:41:44Z
+Stopped at: Completed 08-02-PLAN.md (Encryption Utilities) - Phase 8 in progress (2/3 plans complete)
 Resume file: None
