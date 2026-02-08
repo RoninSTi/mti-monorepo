@@ -171,8 +171,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 09-01-PLAN.md -- Fastify app factory with Zod validation, CORS, Helmet, error handler
-- [ ] 09-02-PLAN.md -- Health check endpoint, server entry point, npm scripts, graceful shutdown
+- [x] 09-01-PLAN.md -- Fastify app factory with Zod validation, CORS, Helmet, error handler
+- [x] 09-02-PLAN.md -- Health check endpoint, server entry point, npm scripts, graceful shutdown
 
 #### Phase 10: Factory API
 **Goal**: Complete CRUD operations for factory management via REST endpoints
@@ -224,6 +224,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 6. Testing & Documentation | M0 | 0/2 | Not started | - |
 | 7. Database Setup | v1.0 | 2/2 | Complete | 2026-02-08 |
 | 8. Repository Layer | v1.0 | 3/3 | Complete | 2026-02-08 |
-| 9. API Server Foundation | v1.0 | 0/TBD | Not started | - |
+| 9. API Server Foundation | v1.0 | 2/2 | Complete | 2026-02-08 |
 | 10. Factory API | v1.0 | 0/TBD | Not started | - |
 | 11. Gateway API CRUD | v1.0 | 0/TBD | Not started | - |
