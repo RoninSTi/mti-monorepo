@@ -127,11 +127,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DB-01 | Phase 7 | Pending |
-| DB-02 | Phase 7 | Pending |
-| DB-03 | Phase 7 | Pending |
-| DB-04 | Phase 7 | Pending |
-| DB-05 | Phase 7 | Pending |
+| DB-01 | Phase 7 | Complete |
+| DB-02 | Phase 7 | Complete |
+| DB-03 | Phase 7 | Complete |
+| DB-04 | Phase 7 | Complete |
+| DB-05 | Phase 7 | Complete |
 | REPO-01 | Phase 8 | Pending |
 | REPO-02 | Phase 8 | Pending |
 | REPO-03 | Phase 8 | Pending |
