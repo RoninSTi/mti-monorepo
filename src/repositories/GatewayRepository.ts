@@ -49,13 +49,22 @@ class GatewayRepository {
   /**
    * Find all gateways (excludes soft-deleted)
    */
-  async findAll(): Promise<Gateway[]> {
-    return await db
+  async findAll(options?: { limit?: number; offset?: number }): Promise<Gateway[]> {
+    let query = db
       .selectFrom('gateways')
       .selectAll()
       .where('deleted_at', 'is', null)
-      .orderBy('name', 'asc')
-      .execute();
+      .orderBy('name', 'asc');
+
+    if (options?.limit) {
+      query = query.limit(options.limit);
+    }
+
+    if (options?.offset) {
+      query = query.offset(options.offset);
+    }
+
+    return await query.execute();
   }
 
   /**
@@ -145,6 +154,19 @@ class GatewayRepository {
       .where('deleted_at', 'is', null) // Prevent double-delete
       .returningAll()
       .executeTakeFirst();
+  }
+
+  /**
+   * Count total non-deleted gateways
+   */
+  async count(): Promise<number> {
+    const result = await db
+      .selectFrom('gateways')
+      .select(db.fn.countAll().as('count'))
+      .where('deleted_at', 'is', null)
+      .executeTakeFirstOrThrow();
+
+    return Number(result.count);
   }
 
   /**
