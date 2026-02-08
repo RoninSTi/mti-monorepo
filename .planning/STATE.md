@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-02-08)
 
 Milestone: v1.0 Factory and Gateway CRUD (Database + API Layer)
 Phase: 11 - Gateway API CRUD
-Plan: 11-01 of 2
-Status: In progress
-Last activity: 2026-02-08 - Completed 11-01-PLAN.md (Gateway API Schemas & Pagination)
+Plan: 11-02 of 2
+Status: Phase complete
+Last activity: 2026-02-08 - Completed 11-02-PLAN.md (Gateway API CRUD Routes and README)
 
-Progress: [█████████░░] 91% (20/22 plans complete across all milestones)
+Progress: [█████████░░] 95% (21/22 plans complete across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 20
+- Total plans completed: 21
 - Average duration: 2 min
-- Total execution time: 0.72 hours
+- Total execution time: 0.77 hours
 
 **By Phase:**
 
@@ -36,12 +36,12 @@ Progress: [█████████░░] 91% (20/22 plans complete across a
 | 7. Database Setup | 2/2 | 5min | 3min |
 | 8. Repository Layer | 3/3 | 11min | 4min |
 | 9. API Server Foundation | 2/2 | 3min | 2min |
-| 10. Factory API | 2/3 | 3min | 2min |
-| 11. Gateway API CRUD | 1/2 | 1min | 1min |
+| 10. Factory API | 3/3 | 6min | 2min |
+| 11. Gateway API CRUD | 2/2 | 4min | 2min |
 
 **Recent Trend:**
-- Last 5 plans: 09-02 (1min), 10-01 (1min), 10-02 (2min), 11-01 (1min)
-- Trend: Consistent 1-2min pace, high velocity maintained
+- Last 5 plans: 10-01 (1min), 10-02 (2min), 11-01 (1min), 11-02 (3min)
+- Trend: Consistent 1-3min pace, Milestone v1.0 complete
 
 *Updated after each plan completion*
 
@@ -93,6 +93,9 @@ Recent decisions affecting current work:
 | Parallel Promise.all for pagination | Fetch data and count simultaneously for better performance | Phase 10-02 factory routes |
 | Gateway response excludes password fields | GATEWAY-07 security requirement - never expose password or password_encrypted in API responses | Phase 11-01 gateway schemas |
 | Gateway list supports factory filter | Optional factory_id UUID filter in query params for factory-scoped gateway lists | Phase 11-01 gateway schemas |
+| Password update separation in PUT | Separate password re-encryption from other field updates | Phase 11-02 gateway routes - explicit security boundary |
+| Manual pagination for factory filtering | findActive() returns full list, route handler applies slice() | Phase 11-02 gateway routes - acceptable for v1.0 |
+| Comprehensive README scope | Single README documents all milestones (M0 + M1) | Phase 11-02 documentation - QUAL-07 fulfilled |
 
 ### Pending Todos
 
@@ -103,12 +106,17 @@ None yet.
 **From Milestone 0:**
 - Phase 6 (Testing & Documentation) still pending - deferred to allow M1 progress
 
-**For Milestone v1.0:**
+**Milestone v1.0 Status:**
+- ✅ COMPLETE: All phases finished (Database Setup, Repository Layer, API Server, Factory API, Gateway API)
+- ✅ All requirements satisfied (FACTORY-01 through GATEWAY-09, QUAL-07)
+- ✅ README documentation complete
+
+**Known Issues:**
 - Port 5432 conflict: Existing PostgreSQL container running on default port. Users should stop it or override port in docker-compose.override.yml
 - ENCRYPTION_KEY resolved: Development key added to .env.example, seed data working with real encryption
 
 ## Session Continuity
 
-Last session: 2026-02-08T14:59:11Z
-Stopped at: Completed 11-01-PLAN.md (Gateway API Schemas & Pagination) - Phase 11 in progress (1/2 plans complete)
+Last session: 2026-02-08T15:05:53Z
+Stopped at: Completed 11-02-PLAN.md (Gateway API CRUD Routes and README) - Milestone v1.0 complete
 Resume file: None
