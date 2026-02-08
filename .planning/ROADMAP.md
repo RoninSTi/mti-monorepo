@@ -1,25 +1,14 @@
-# Roadmap: Gateway Integration Spike (Milestone 0)
+# Roadmap: Factory Vibration Monitoring Application
 
-## Overview
+## Milestones
 
-This roadmap validates the CTC Connect Wireless gateway WebSocket API through six phases. Starting with project infrastructure and connection management, progressing through message handling and authentication, enabling sensor discovery and vibration readings, and concluding with comprehensive testing. Each phase delivers working, verifiable functionality that enables the next. The spike proves the gateway communication layer before committing to the full multi-gateway architecture.
+- ✅ **Milestone 0: Gateway Integration Spike** - Phases 1-6 (83% complete, Phase 6 pending)
+- 🚧 **Milestone v1.0: Database + API Layer** - Phases 7-11 (not started)
 
 ## Phases
 
-**Phase Numbering:**
-- Integer phases (1, 2, 3): Planned milestone work
-- Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
-
-Decimal phases appear between their surrounding integers in numeric order.
-
-- [x] **Phase 1: Foundation & Configuration** - Project structure, TypeScript setup, configuration loading
-- [x] **Phase 2: Connection Management** - WebSocket connection with state machine and lifecycle handling
-- [x] **Phase 3: Message Infrastructure** - Command/response pattern with correlation and timeout handling
-- [x] **Phase 4: Authentication & Discovery** - Gateway authentication and sensor discovery
-- [x] **Phase 5: Acquisition & Notifications** - Vibration readings with async notifications and output display
-- [ ] **Phase 6: Testing & Documentation** - End-to-end testing, edge cases, and behavior documentation
-
-## Phase Details
+<details>
+<summary>✅ Milestone 0: Gateway Integration Spike (Phases 1-6) - 83% COMPLETE</summary>
 
 ### Phase 1: Foundation & Configuration
 **Goal**: Establish project structure with TypeScript, configuration loading, and logging infrastructure
@@ -127,16 +116,110 @@ Plans:
 - [ ] 06-01-PLAN.md -- Manual test checklist creation and hardware test execution
 - [ ] 06-02-PLAN.md -- Gateway behavior documentation and README
 
+</details>
+
+### 🚧 Milestone v1.0: Database + API Layer (In Progress)
+
+**Milestone Goal:** Establish production-ready persistence and REST API for managing factories and gateways, without multi-gateway orchestration yet.
+
+#### Phase 7: Database Setup
+**Goal**: PostgreSQL database running with complete schema and migrations
+**Depends on**: Phase 6 (Milestone 0)
+**Requirements**: DB-01, DB-02, DB-03, DB-04, DB-05
+**Success Criteria** (what must be TRUE):
+  1. PostgreSQL runs via Docker Compose on configured port
+  2. Migrations apply successfully and create all three tables (organizations, factories, gateways)
+  3. All tables have UUID primary keys, soft delete columns (deleted_at), and JSONB metadata
+  4. Foreign key constraints enforce data integrity (factories reference organizations, gateways reference factories)
+  5. Indexes exist on foreign keys and query-heavy columns for performance
+**Plans**: TBD
+
+Plans:
+- [ ] 07-01: [To be planned]
+
+#### Phase 8: Repository Layer
+**Goal**: Type-safe data access layer with encryption for sensitive credentials
+**Depends on**: Phase 7
+**Requirements**: REPO-01, REPO-02, REPO-03, REPO-04, REPO-05, REPO-06, CRYPTO-01, CRYPTO-02, CRYPTO-03, CRYPTO-04, QUAL-02, QUAL-08
+**Success Criteria** (what must be TRUE):
+  1. Kysely connection pool connects to PostgreSQL and generates type-safe query builders
+  2. FactoryRepository provides create, findById, findAll, update, and softDelete methods
+  3. GatewayRepository provides create, findById, findAll, findActive, update, and softDelete methods
+  4. Soft delete queries automatically exclude deleted records (WHERE deleted_at IS NULL)
+  5. Gateway passwords are encrypted before storage using AES-256-GCM and decrypt successfully for connections
+  6. All repository methods return correctly typed results
+**Plans**: TBD
+
+Plans:
+- [ ] 08-01: [To be planned]
+
+#### Phase 9: API Server Foundation
+**Goal**: Fastify server running with health check, validation, and error handling
+**Depends on**: Phase 8
+**Requirements**: API-01, API-02, API-03, API-04, API-05, API-06, API-07, QUAL-01, QUAL-03, QUAL-04, QUAL-05, QUAL-06
+**Success Criteria** (what must be TRUE):
+  1. Fastify server starts on configured port (default 3000) and responds to requests
+  2. Health check endpoint (GET /api/health) returns 200 OK with status information
+  3. CORS headers are present on all responses for configured origins
+  4. Security headers are present via Helmet middleware
+  5. Zod validation plugin rejects invalid requests with detailed error messages
+  6. All errors return standardized JSON format with error code, message, and details
+  7. Request logging provides actionable information (method, path, status, duration)
+**Plans**: TBD
+
+Plans:
+- [ ] 09-01: [To be planned]
+
+#### Phase 10: Factory API
+**Goal**: Complete CRUD operations for factory management via REST endpoints
+**Depends on**: Phase 9
+**Requirements**: FACTORY-01, FACTORY-02, FACTORY-03, FACTORY-04, FACTORY-05, FACTORY-06, FACTORY-07, FACTORY-08, FACTORY-09
+**Success Criteria** (what must be TRUE):
+  1. User can create factories via POST /api/factories with validated input
+  2. User can list all factories via GET /api/factories with pagination support
+  3. User can retrieve a single factory by ID via GET /api/factories/:id
+  4. User can update factory details via PUT /api/factories/:id
+  5. User can soft delete factories via DELETE /api/factories/:id (deleted factories excluded from default queries)
+  6. Invalid requests return 400 with Zod validation details
+  7. Missing factories return 404 with appropriate error message
+**Plans**: TBD
+
+Plans:
+- [ ] 10-01: [To be planned]
+
+#### Phase 11: Gateway API CRUD
+**Goal**: Complete CRUD operations for gateway management with encrypted credential storage
+**Depends on**: Phase 10
+**Requirements**: GATEWAY-01, GATEWAY-02, GATEWAY-03, GATEWAY-04, GATEWAY-05, GATEWAY-06, GATEWAY-07, GATEWAY-08, GATEWAY-09, QUAL-07
+**Success Criteria** (what must be TRUE):
+  1. User can create gateways via POST /api/gateways with automatic password encryption
+  2. User can list gateways via GET /api/gateways with pagination and factory filtering
+  3. User can retrieve a single gateway by ID via GET /api/gateways/:id
+  4. User can update gateway details via PUT /api/gateways/:id (password re-encrypted if changed)
+  5. User can soft delete gateways via DELETE /api/gateways/:id
+  6. Gateway passwords are never returned in plaintext via API responses
+  7. Database errors return 500 with safe error messages (no credential leakage)
+  8. README documents setup, configuration, and API usage
+**Plans**: TBD
+
+Plans:
+- [ ] 11-01: [To be planned]
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11
 
-| Phase | Plans Complete | Status | Completed |
-|-------|----------------|--------|-----------|
-| 1. Foundation & Configuration | 1/1 | Complete | 2026-02-07 |
-| 2. Connection Management | 2/2 | Complete | 2026-02-07 |
-| 3. Message Infrastructure | 3/3 | Complete | 2026-02-07 |
-| 4. Authentication & Discovery | 2/2 | Complete | 2026-02-07 |
-| 5. Acquisition & Notifications | 3/3 | Complete | 2026-02-07 |
-| 6. Testing & Documentation | 0/2 | Not started | - |
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|----------------|--------|-----------|
+| 1. Foundation & Configuration | M0 | 1/1 | Complete | 2026-02-07 |
+| 2. Connection Management | M0 | 2/2 | Complete | 2026-02-07 |
+| 3. Message Infrastructure | M0 | 3/3 | Complete | 2026-02-07 |
+| 4. Authentication & Discovery | M0 | 2/2 | Complete | 2026-02-07 |
+| 5. Acquisition & Notifications | M0 | 3/3 | Complete | 2026-02-07 |
+| 6. Testing & Documentation | M0 | 0/2 | Not started | - |
+| 7. Database Setup | v1.0 | 0/TBD | Not started | - |
+| 8. Repository Layer | v1.0 | 0/TBD | Not started | - |
+| 9. API Server Foundation | v1.0 | 0/TBD | Not started | - |
+| 10. Factory API | v1.0 | 0/TBD | Not started | - |
+| 11. Gateway API CRUD | v1.0 | 0/TBD | Not started | - |

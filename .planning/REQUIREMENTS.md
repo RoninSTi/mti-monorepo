@@ -5,7 +5,7 @@
 
 ## v1.0 Requirements
 
-Requirements for Milestone v1.0: Database + API Layer (Phases 1-5). Multi-gateway orchestration deferred to next milestone.
+Requirements for Milestone v1.0: Database + API Layer (Phases 7-11). Multi-gateway orchestration deferred to next milestone.
 
 ### Database & Migrations
 
@@ -127,13 +127,60 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (To be filled by roadmapper) | | |
+| DB-01 | Phase 7 | Pending |
+| DB-02 | Phase 7 | Pending |
+| DB-03 | Phase 7 | Pending |
+| DB-04 | Phase 7 | Pending |
+| DB-05 | Phase 7 | Pending |
+| REPO-01 | Phase 8 | Pending |
+| REPO-02 | Phase 8 | Pending |
+| REPO-03 | Phase 8 | Pending |
+| REPO-04 | Phase 8 | Pending |
+| REPO-05 | Phase 8 | Pending |
+| REPO-06 | Phase 8 | Pending |
+| CRYPTO-01 | Phase 8 | Pending |
+| CRYPTO-02 | Phase 8 | Pending |
+| CRYPTO-03 | Phase 8 | Pending |
+| CRYPTO-04 | Phase 8 | Pending |
+| API-01 | Phase 9 | Pending |
+| API-02 | Phase 9 | Pending |
+| API-03 | Phase 9 | Pending |
+| API-04 | Phase 9 | Pending |
+| API-05 | Phase 9 | Pending |
+| API-06 | Phase 9 | Pending |
+| API-07 | Phase 9 | Pending |
+| FACTORY-01 | Phase 10 | Pending |
+| FACTORY-02 | Phase 10 | Pending |
+| FACTORY-03 | Phase 10 | Pending |
+| FACTORY-04 | Phase 10 | Pending |
+| FACTORY-05 | Phase 10 | Pending |
+| FACTORY-06 | Phase 10 | Pending |
+| FACTORY-07 | Phase 10 | Pending |
+| FACTORY-08 | Phase 10 | Pending |
+| FACTORY-09 | Phase 10 | Pending |
+| GATEWAY-01 | Phase 11 | Pending |
+| GATEWAY-02 | Phase 11 | Pending |
+| GATEWAY-03 | Phase 11 | Pending |
+| GATEWAY-04 | Phase 11 | Pending |
+| GATEWAY-05 | Phase 11 | Pending |
+| GATEWAY-06 | Phase 11 | Pending |
+| GATEWAY-07 | Phase 11 | Pending |
+| GATEWAY-08 | Phase 11 | Pending |
+| GATEWAY-09 | Phase 11 | Pending |
+| QUAL-01 | Phase 9 | Pending |
+| QUAL-02 | Phase 8 | Pending |
+| QUAL-03 | Phase 9 | Pending |
+| QUAL-04 | Phase 9 | Pending |
+| QUAL-05 | Phase 9 | Pending |
+| QUAL-06 | Phase 9 | Pending |
+| QUAL-07 | Phase 11 | Pending |
+| QUAL-08 | Phase 8 | Pending |
 
 **Coverage:**
 - v1.0 requirements: 46 total
-- Mapped to phases: 0
-- Unmapped: 46 ⚠️
+- Mapped to phases: 46
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-02-08*
-*Last updated: 2026-02-08 after initial definition*
+*Last updated: 2026-02-08 after Milestone v1.0 roadmap creation*

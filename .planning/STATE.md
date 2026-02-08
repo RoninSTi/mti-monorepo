@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-02-08)
 
 **Core value:** Build a reliable foundation for multi-gateway factory monitoring: persistent data model, REST API, and connection orchestration
-**Current focus:** Milestone v1.0 - Defining requirements
+**Current focus:** Milestone v1.0 - Database + API Layer
 
 ## Current Position
 
 Milestone: v1.0 Factory and Gateway CRUD (Database + API Layer)
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-02-08 - Milestone v1.0 started
+Phase: 7 - Database Setup
+Plan: Not yet planned
+Status: Ready to plan
+Last activity: 2026-02-08 - Milestone v1.0 roadmap created (Phases 7-11)
 
-Progress: Not started
+Progress: [█████░░░░░░] 45% (10/22 plans complete across all milestones)
 
 ## Performance Metrics
 
@@ -31,7 +31,7 @@ Progress: Not started
 | 1. Foundation & Configuration | 1/1 | 2min | 2min |
 | 2. Connection Management | 2/2 | 4min | 2min |
 | 3. Message Infrastructure | 3/3 | 6min | 2min |
-| 4. Authentication and Discovery | 2/3 | 3min | 2min |
+| 4. Authentication and Discovery | 2/2 | 3min | 2min |
 | 5. Acquisition and Notifications | 3/3 | 5min | 2min |
 
 **Recent Trend:**
@@ -47,49 +47,15 @@ Progress: Not started
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-| Decision | Phase | Rationale | Impact |
-|----------|-------|-----------|--------|
-| Zod for config validation | 01-01 | Type-safe schemas with detailed error messages and fail-fast behavior | All phases use validated config |
-| Node.js native --env-file | 01-01 | Avoid dotenv dependency, use built-in Node 20.6+ feature | Simplified dependency tree |
-| Mutable logger singleton | 01-01 | Enable config-driven initialization with global access | All phases use logger singleton |
-| String enum for ConnectionState | 02-01 | String values provide readable logging output vs numeric enums | All log messages show "CONNECTED" instead of "2" |
-| Decorrelated jitter backoff | 02-01 | AWS-recommended pattern reduces thundering herd effect | More distributed reconnection timing under load |
-| Application-level heartbeat | 02-01 | Better control, easier debugging, can log timestamps | Heartbeat flow visible in application logs |
-| Callback-based sendFn in HeartbeatManager | 02-01 | Decouples HeartbeatManager from WebSocket instance | HeartbeatManager is independently testable |
-| Composition pattern for WebSocketConnection | 02-02 | WebSocketConnection composes ReconnectionManager and HeartbeatManager | Clear separation of concerns, independent testing |
-| Callback-based message routing | 02-02 | onMessage() allows Phase 3+ to register handlers without modifying WebSocketConnection | Phase 3 can implement auth protocol flexibly |
-| 2-second graceful shutdown timeout | 02-02 | Prevents hung processes while giving timers time to clear | Application exits cleanly on SIGINT/SIGTERM |
-| Close codes 1000 and 1008 non-reconnectable | 02-02 | 1000=intentional, 1008=policy violation | Only reconnect on abnormal failures |
-| Zod z.union() over discriminatedUnion | 03-01 | Zod 4.x API compatibility | All message unions use z.union(), still allows type narrowing |
-| Permissive RTN_DYN Data field | 03-01 | RTN_DYN response structure varies by command | Command client narrows Data type based on command sent |
-| SensorMetadata passthrough | 03-01 | Gateway may return additional undocumented fields | Future-proof against gateway API additions |
-| Native crypto.randomUUID() for correlation IDs | 03-02 | Node.js 20+ built-in, no external dependency | Simpler dependency tree, matches existing patterns |
-| Delete-first pattern for race protection | 03-02 | Prevents both timeout and response from handling same request | Safe against all timing edge cases |
-| Callback-based sendFn in CommandClient | 03-02 | Decouples CommandClient from WebSocketConnection | CommandClient independently testable with mock sendFn |
-| Zod safeParse for gateway messages | 03-03 | Gateway is untrusted, invalid messages shouldn't crash | Invalid messages logged as warnings, application stays running |
-| MessageRouter logs all received messages | 03-03 | Satisfies CMD-06 requirement for debug tracing | Full message flow visible in debug logs |
-| NotificationHandler callback registry | 03-03 | Phase 5 needs to register handlers for NOT_ types | Flexible notification handling without modifying router |
-| 10-second auth timeout | 04-01 | Authentication should be fast, industry best practice | authenticate() uses AUTH_TIMEOUT_MS = 10_000 |
-| markAuthenticated() validates state transition | 04-01 | Only allow CONNECTED -> AUTHENTICATED, prevent double-auth | Warns and returns if called from wrong state |
-| SENSOR_SERIAL as optional number | 04-01 | Research recommends optional; Serial in metadata is number | Config type changed from required string to optional number |
-| authenticate() returns unknown | 04-01 | POST_LOGIN response structure is open question | Response data logged at debug level for discovery |
-| authenticate() logs email but never password | 04-01 | Security: avoid credential exposure in logs | Only email logged in info message |
-| onOpen callback pattern matches onMessage | 04-02 | Consistency with existing connection callback architecture | Clean lifecycle event handling |
-| discoverSensor() receives preferredSerial parameter | 04-02 | Avoids importing config, improves testability | Function testable with mock CommandClient |
-| SensorMetadataSchema.safeParse() per entry | 04-02 | Invalid entries logged without failing entire discovery | Resilient to partial gateway data issues |
-| Exit code semantics: no sensors (0) vs auth (1) | 04-02 | No sensors is valid state, auth failure is error | Clear distinction for monitoring systems |
-| Progressive parsing strategy (CSV->JSON->Base64) | 05-01 | Waveform encoding format unknown (ACQ-06), need flexible discovery | Parser IS the discovery mechanism for format |
-| Reduce pattern for statistics | 05-01 | Math.min/max(...array) causes stack overflow on large arrays | Handles arrays of any size safely |
-| Generous validation range (±200g) | 05-01 | Actual sensor range unknown during development | Accept valid data during discovery, narrow later |
-| Console.log formatting over console.table | 05-01 | Need reliable, clean output with precise control | Works everywhere, no dependencies, easy alignment |
-| EventEmitter extension with dual-dispatch | 05-02 | NotificationHandler extends EventEmitter while maintaining backward-compatible callback registration | Enables events.once() Promise-based awaiting, supports both paradigms |
-| Register listeners before trigger | 05-02 | Register notification listeners BEFORE sending TAKE_DYN_READING | Prevents race condition where notification arrives before listener attached |
-| Promise.race() timeout pattern | 05-02 | Use Promise.race() with local timeout helper for all notification waits | Native pattern, no dependencies, explicit timeout control, clear error messages |
-| Non-blocking temperature notification | 05-02 | Temperature awaited separately with 10s timeout, caught and logged, never throws | Temperature optional/informational, should not block or fail acquisition flow |
-| Differential timeout strategy | 05-02 | 30s for NOT_DYN_READING_STARTED, 60s for NOT_DYN_READING, 10s for NOT_DYN_TEMP | Started immediate, acquisition takes time, temperature optional |
-| Unsubscribe in all paths | 05-03 | Unsubscribe called in success path, error path, and signal handler shutdown | Gateway always receives POST_UNSUB_CHANGES regardless of exit reason, prevents orphaned subscriptions |
-| One-shot spike application | 05-03 | Application connects, acquires one reading, and exits | Milestone 0 scope is validation spike, not production service - single reading proves integration works |
-| Best-effort shutdown unsubscribe | 05-03 | shutdown() and error path call unsubscribe with catch (no throw), never blocks | Shutdown must complete within 2s timeout, unsubscribe is best-effort cleanup
+| Decision | Rationale | Impact |
+|----------|-----------|--------|
+| PostgreSQL over MongoDB | Relational model + JSONB flexibility + TypeScript ecosystem | Phase 7 foundation |
+| Kysely over ORM | Type-safe SQL without magic, explicit queries | Phase 8 repository layer |
+| Fastify over Express | TypeScript-first, high performance, built-in validation | Phase 9 API server |
+| Encrypt (not hash) gateway passwords | Need plaintext to authenticate with gateways | Phase 8 encryption utilities |
+| Soft deletes | Preserve audit trail, avoid cascading hard deletes | Phases 8, 10, 11 |
+| In-memory connection state | Ephemeral by nature, only last_seen_at persisted | Future orchestration work |
+| Split M1 into API-first then orchestration | Can progress while M0 Phase 6 pending | Milestone v1.0 scope |
 
 ### Pending Todos
 
@@ -97,10 +63,14 @@ None yet.
 
 ### Blockers/Concerns
 
-None yet.
+**From Milestone 0:**
+- Phase 6 (Testing & Documentation) still pending - deferred to allow M1 progress
+
+**For Milestone v1.0:**
+- None yet (fresh milestone start)
 
 ## Session Continuity
 
-Last session: 2026-02-08T00:08:20Z (plan execution)
-Stopped at: Completed 05-03-PLAN.md - Wired AcquisitionManager into main.ts completing full application flow: connect -> authenticate -> discover -> subscribe -> acquire -> display -> unsubscribe -> exit. Phase 5 complete.
+Last session: 2026-02-08 (roadmap creation)
+Stopped at: Created Milestone v1.0 roadmap with phases 7-11. All 46 v1.0 requirements mapped. Ready for Phase 7 planning.
 Resume file: None
