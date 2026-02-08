@@ -117,13 +117,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SETUP-01 | Phase 12 | Pending |
-| SETUP-02 | Phase 12 | Pending |
-| SETUP-03 | Phase 12 | Pending |
-| SETUP-04 | Phase 12 | Pending |
-| SETUP-05 | Phase 12 | Pending |
-| SETUP-06 | Phase 12 | Pending |
-| SETUP-07 | Phase 12 | Pending |
+| SETUP-01 | Phase 12 | Complete |
+| SETUP-02 | Phase 12 | Complete |
+| SETUP-03 | Phase 12 | Complete |
+| SETUP-04 | Phase 12 | Complete |
+| SETUP-05 | Phase 12 | Complete |
+| SETUP-06 | Phase 12 | Complete |
+| SETUP-07 | Phase 12 | Complete |
 | NAV-01 | Phase 13 | Pending |
 | NAV-02 | Phase 13 | Pending |
 | NAV-03 | Phase 13 | Pending |
