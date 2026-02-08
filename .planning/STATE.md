@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-02-08)
 
 Milestone: v1.1 Factory & Gateway Management UI
 Phase: 13 of 17 (Component Architecture)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-02-08 — Completed 13-02-PLAN.md
+Plan: 3 of 3 in current phase
+Status: Phase complete
+Last activity: 2026-02-08 — Completed 13-03-PLAN.md
 
-Progress: [█████████░░░░░░░░░░░] 51% (27 plans complete)
+Progress: [██████████░░░░░░░░░░] 52% (28 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 27 (M0 + v1.0 + v1.1)
+- Total plans completed: 28 (M0 + v1.0 + v1.1)
 - Average duration: 2 min
-- Total execution time: 0.95 hours
+- Total execution time: 0.98 hours
 
 **By Phase:**
 
@@ -39,11 +39,11 @@ Progress: [█████████░░░░░░░░░░░] 51% (27
 | 10. Factory API | 3/3 | 6min | 2min |
 | 11. Gateway API CRUD | 2/2 | 4min | 2min |
 | 12. Frontend Foundation | 3/3 | 6min | 2min |
-| 13. Component Architecture | 2/3 | 6min | 3min |
+| 13. Component Architecture | 3/3 | 8min | 3min |
 
 **Recent Trend:**
-- Last 5 plans: 12-02 (2min), 12-03 (2min), 13-01 (4min), 13-02 (2min)
-- Trend: Phase 13 averaging 3min per plan (component architecture)
+- Last 5 plans: 12-03 (2min), 13-01 (4min), 13-02 (2min), 13-03 (2min)
+- Trend: Phase 13 complete - averaged 3min/plan (component architecture)
 
 *Updated after each plan completion*
 
@@ -70,6 +70,11 @@ Recent decisions affecting v1.1 work:
 | createBrowserRouter for routing | Better data loading support, cleaner route configuration | Phase 13-02 |
 | Root route redirects to /factories | Default landing page for factory monitoring app | Phase 13-02 |
 | Layout/pages directory organization | Clear separation between structural components and route endpoints | Phase 13-02 |
+| React Hook Form register pattern | Minimal re-renders vs Controller per research | Phase 13-03 forms |
+| Export Zod schemas from forms | Reusable for API validation, single source of truth | Phase 13-03 |
+| Separate create/edit schemas | Password optional in edit mode, required in create | Phase 13-03 GatewayForm |
+| Native select for factory dropdown | Sufficient for v1.1, accessible by default | Phase 13-03 GatewayForm |
+| Form isSubmitting as prop | Parent controls submission state via React Query | Phase 13-03 forms |
 | No authentication in v1.1 | Focus on configuration UI, security in future milestone | All phases |
 
 **Previous milestone decisions (v1.0):**
@@ -94,15 +99,16 @@ None yet.
 
 **Milestone v1.1 Status:**
 - ✅ Phase 12 complete: Frontend foundation with React, Vite, TypeScript, Tailwind CSS v4, React Query, and API client
-- 🔄 Phase 13 in progress: Component architecture (2/3 plans complete)
+- ✅ Phase 13 complete: Component architecture (3/3 plans complete)
   - ✅ 13-01: Component library + dependencies (7 UI components, routing, validation)
   - ✅ 13-02: Routing & Layout (AppLayout, Sidebar, 3 placeholder pages, React Router nested routes)
-  - ⏳ 13-03: Forms & Validation pending
+  - ✅ 13-03: Forms & Validation (FactoryForm, GatewayForm with Zod)
+- ⏳ Phase 14: API Integration Layer pending
 
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Completed 13-02-PLAN.md
+Stopped at: Completed 13-03-PLAN.md
 Resume file: None
 
 ---
