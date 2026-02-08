@@ -9,6 +9,7 @@ import { MessageRouter } from './gateway/message-router';
 import { NotificationHandler } from './gateway/notification-handler';
 import { authenticate } from './gateway/authenticator';
 import { discoverSensor } from './gateway/sensor-discovery';
+import { AcquisitionManager } from './acquisition/acquisition-manager';
 
 // Initialize logger with configured log level
 initLogger(config.LOG_LEVEL);
@@ -54,6 +55,13 @@ const messageRouter = new MessageRouter(commandClient, notificationHandler);
 
 logger.info('Message infrastructure initialized (router, command client, notification handler)');
 
+// Create acquisition manager
+const acquisitionManager = new AcquisitionManager(
+  commandClient,
+  notificationHandler,
+  config.ACQUISITION_TIMEOUT
+);
+
 // Register message handler - route incoming messages through MessageRouter
 connection.onMessage((data) => messageRouter.handleMessage(data));
 
@@ -67,6 +75,11 @@ function shutdown(signal: string): void {
   }
   isShuttingDown = true;
   logger.info(`Received ${signal} - starting graceful shutdown`);
+
+  // Unsubscribe from notifications (best-effort, don't block shutdown)
+  acquisitionManager.unsubscribe().catch((err) => {
+    logger.debug(`Unsubscribe during shutdown failed: ${err}`);
+  });
 
   // Clean up message infrastructure first
   commandClient.cleanup();
@@ -103,11 +116,19 @@ async function onConnectionOpen(): Promise<void> {
     // DISC-01, DISC-02, DISC-03, DISC-04: Discover and select sensor
     const sensor = await discoverSensor(commandClient, config.SENSOR_SERIAL);
 
-    // Store selected sensor for Phase 5 acquisition
-    logger.info(`Ready for data acquisition with sensor Serial=${sensor.Serial}`);
-    logger.info('Phase 4 complete: authenticated and sensor discovered');
+    // SUB-01: Subscribe to gateway notifications
+    await acquisitionManager.subscribe();
 
-    // Phase 5 will add: subscribe to notifications, trigger reading, display data
+    // ACQ-01 through ACQ-08, OUT-01 through OUT-06: Trigger reading and display results
+    await acquisitionManager.acquireReading(sensor);
+
+    // SUB-04: Unsubscribe and exit cleanly
+    await acquisitionManager.unsubscribe();
+
+    logger.info('Acquisition complete - shutting down');
+    commandClient.cleanup();
+    connection.close(1000, 'Acquisition complete');
+    setTimeout(() => process.exit(0), 1000);
 
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
@@ -121,11 +142,13 @@ async function onConnectionOpen(): Promise<void> {
       return;
     }
 
-    // AUTH-04: Authentication failure or other error
-    logger.error(`Startup failed: ${message}`);
+    // Auth failure, acquisition failure, or other error
+    // Try to unsubscribe if we got far enough
+    acquisitionManager.unsubscribe().catch(() => {});
+    logger.error(`Failed: ${message}`);
     commandClient.cleanup();
-    connection.close(1000, 'Startup failed');
-    setTimeout(() => process.exit(1), 1000); // Exit 1 - actual failure
+    connection.close(1000, 'Operation failed');
+    setTimeout(() => process.exit(1), 1000);
   }
 }
 
