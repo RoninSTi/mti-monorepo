@@ -1,5 +1,6 @@
 import { Pool } from 'pg';
 import { databaseConfig } from './config';
+import { encryptPassword, getEncryptionKey } from '../utils/encryption';
 
 async function seed() {
   const pool = new Pool({
@@ -12,6 +13,13 @@ async function seed() {
 
   try {
     console.log('Starting database seed...');
+
+    // Encrypt seed password with AES-256-GCM
+    // Requires ENCRYPTION_KEY environment variable to be set
+    // Generate key with: openssl rand -base64 32
+    const encryptionKey = getEncryptionKey();
+    const encrypted = encryptPassword('admin123', encryptionKey);
+    const encryptedPasswordJson = JSON.stringify(encrypted);
 
     // Use a transaction to ensure atomicity
     await pool.query('BEGIN');
@@ -68,10 +76,6 @@ async function seed() {
     // Seed gateways (2 per factory)
     console.log('Seeding gateways...');
 
-    // Note: Using placeholder for encrypted passwords
-    // Real encryption will be implemented in Phase 8 with AES-256-GCM
-    const placeholderPassword = 'PLACEHOLDER_ENCRYPTED_PASSWORD';
-
     await pool.query(
       `INSERT INTO gateways (
          factory_id, gateway_id, name, url, email, password_encrypted,
@@ -96,7 +100,7 @@ async function seed() {
         'North Wing Gateway',
         'ws://192.168.1.100:5000',
         'admin@example.com',
-        placeholderPassword,
+        encryptedPasswordJson,
         'CTC-GW-100',
         'v2.1.0',
         new Date(Date.now() - 15 * 60 * 1000), // 15 minutes ago
