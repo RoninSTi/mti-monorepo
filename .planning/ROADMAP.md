@@ -186,10 +186,11 @@ Plans:
   5. User can soft delete factories via DELETE /api/factories/:id (deleted factories excluded from default queries)
   6. Invalid requests return 400 with Zod validation details
   7. Missing factories return 404 with appropriate error message
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 10-01: [To be planned]
+- [ ] 10-01-PLAN.md -- Zod schemas for factory API and FactoryRepository pagination support
+- [ ] 10-02-PLAN.md -- Factory CRUD route handlers and app.ts registration
 
 #### Phase 11: Gateway API CRUD
 **Goal**: Complete CRUD operations for gateway management with encrypted credential storage
