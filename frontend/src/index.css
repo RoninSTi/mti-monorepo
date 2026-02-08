@@ -1,1 +1,48 @@
 @import "tailwindcss";
+
+@theme {
+  /* Primary - Blue tone for actions and interactive elements */
+  --color-primary: oklch(0.55 0.2 250);
+  --color-primary-foreground: oklch(0.98 0.01 250);
+
+  /* Background and foreground */
+  --color-background: oklch(0.985 0 0);
+  --color-foreground: oklch(0.145 0 0);
+
+  /* Muted - Subtle backgrounds */
+  --color-muted: oklch(0.94 0 0);
+  --color-muted-foreground: oklch(0.45 0 0);
+
+  /* Card surfaces */
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.145 0 0);
+
+  /* Border and input */
+  --color-border: oklch(0.87 0 0);
+  --color-input: oklch(0.87 0 0);
+
+  /* Destructive - Red for delete/error actions */
+  --color-destructive: oklch(0.55 0.22 25);
+  --color-destructive-foreground: oklch(0.98 0.01 25);
+
+  /* Ring - Focus outlines */
+  --color-ring: oklch(0.55 0.2 250);
+
+  /* Secondary */
+  --color-secondary: oklch(0.94 0 0);
+  --color-secondary-foreground: oklch(0.145 0 0);
+
+  /* Accent */
+  --color-accent: oklch(0.94 0 0);
+  --color-accent-foreground: oklch(0.145 0 0);
+
+  /* Radius */
+  --radius: 0.5rem;
+}
+
+/* Base styles */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: system-ui, -apple-system, sans-serif;
+}
