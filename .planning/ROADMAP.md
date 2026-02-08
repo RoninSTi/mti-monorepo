@@ -189,8 +189,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 10-01-PLAN.md -- Zod schemas for factory API and FactoryRepository pagination support
-- [ ] 10-02-PLAN.md -- Factory CRUD route handlers and app.ts registration
+- [x] 10-01-PLAN.md -- Zod schemas for factory API and FactoryRepository pagination support
+- [x] 10-02-PLAN.md -- Factory CRUD route handlers and app.ts registration
 
 #### Phase 11: Gateway API CRUD
 **Goal**: Complete CRUD operations for gateway management with encrypted credential storage
@@ -226,5 +226,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 7. Database Setup | v1.0 | 2/2 | Complete | 2026-02-08 |
 | 8. Repository Layer | v1.0 | 3/3 | Complete | 2026-02-08 |
 | 9. API Server Foundation | v1.0 | 2/2 | Complete | 2026-02-08 |
-| 10. Factory API | v1.0 | 0/TBD | Not started | - |
+| 10. Factory API | v1.0 | 2/2 | Complete | 2026-02-08 |
 | 11. Gateway API CRUD | v1.0 | 0/TBD | Not started | - |
