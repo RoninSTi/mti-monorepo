@@ -2,19 +2,20 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-02-07)
+See: .planning/PROJECT.md (updated 2026-02-08)
 
-**Core value:** Validate gateway communication layer works reliably before building full architecture
-**Current focus:** Phase 5 - Acquisition and Notifications
+**Core value:** Build a reliable foundation for multi-gateway factory monitoring: persistent data model, REST API, and connection orchestration
+**Current focus:** Milestone v1.0 - Defining requirements
 
 ## Current Position
 
-Phase: 5 of 6 (Acquisition and Notifications)
-Plan: 3 of 3
-Status: Phase complete
-Last activity: 2026-02-08 - Completed 05-03-PLAN.md
+Milestone: v1.0 Factory and Gateway CRUD (Database + API Layer)
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-02-08 - Milestone v1.0 started
 
-Progress: [█████░░░░░] 83% (5/6 phases complete)
+Progress: Not started
 
 ## Performance Metrics
 
