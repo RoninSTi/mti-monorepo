@@ -168,10 +168,11 @@ Plans:
   5. Zod validation plugin rejects invalid requests with detailed error messages
   6. All errors return standardized JSON format with error code, message, and details
   7. Request logging provides actionable information (method, path, status, duration)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 09-01: [To be planned]
+- [ ] 09-01-PLAN.md -- Fastify app factory with Zod validation, CORS, Helmet, error handler
+- [ ] 09-02-PLAN.md -- Health check endpoint, server entry point, npm scripts, graceful shutdown
 
 #### Phase 10: Factory API
 **Goal**: Complete CRUD operations for factory management via REST endpoints
