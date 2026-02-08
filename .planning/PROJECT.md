@@ -8,22 +8,29 @@ A TypeScript/Node.js application for industrial vibration monitoring that connec
 
 Build a reliable foundation for multi-gateway factory monitoring: persistent data model, REST API for management operations, and real-time connection orchestration that scales to production workloads.
 
-## Current Milestone: v1.0 Factory and Gateway CRUD (Database + API Layer)
+## Current State
 
-**Goal:** Establish production-ready persistence and REST API for managing factories and gateways, without multi-gateway orchestration yet.
+**Latest Release:** v1.0 Database + API Layer (Shipped: 2026-02-08)
 
-**Target features:**
-- PostgreSQL database with organizations, factories, gateways tables
-- Type-safe repository layer with Kysely query builder
-- REST API with Fastify (Factory CRUD + Gateway CRUD endpoints)
-- Encrypted gateway credential storage (AES-256-GCM)
-- Request validation with Zod schemas
-- Standardized error responses
+Production-ready REST API for managing factories and gateways with encrypted credential storage. Complete database schema with PostgreSQL, type-safe repository layer with Kysely, and full CRUD operations via Fastify.
 
-**Deferred to next milestone:**
-- Multi-gateway connection orchestration (after M0 Phase 6 complete)
-- Gateway lifecycle management (API → connect/disconnect)
-- Real-time connection status monitoring
+**Tech Stack:** TypeScript, Node.js, PostgreSQL 15, Kysely, Fastify, Zod, AES-256-GCM encryption
+**Codebase:** 3,988 lines TypeScript across 59 files
+**UAT:** 10/10 tests passed
+
+## Next Milestone Goals
+
+**v1.1: Gateway Orchestration & Lifecycle Management**
+
+Connect the database + API layer (v1.0) to the gateway integration spike (Milestone 0) with multi-gateway orchestration, lifecycle management, and real-time connection monitoring.
+
+**Target Features:**
+- GatewayConnectionManager for multi-gateway orchestration
+- GatewayRegistry for in-memory connection state tracking
+- Load active gateways from database on startup
+- Parallel connection management (3+ gateways concurrently)
+- Gateway lifecycle management (API operations trigger connect/disconnect)
+- Real-time connection status endpoints
 
 ## Requirements
 
@@ -46,28 +53,30 @@ Build a reliable foundation for multi-gateway factory monitoring: persistent dat
 - ✓ **CODE-02**: TypeScript types for gateway protocol — Milestone 0
 - ✓ **CODE-03**: Configuration externalized (environment variables) — Milestone 0
 
+**Milestone v1.0** (shipped 2026-02-08):
+- ✓ **DB-01 through DB-05**: PostgreSQL database with UUID PKs, soft deletes, JSONB metadata, FK constraints — v1.0
+- ✓ **REPO-01 through REPO-06**: Type-safe repository layer with Kysely query builder — v1.0
+- ✓ **CRYPTO-01 through CRYPTO-04**: AES-256-GCM encryption for gateway credentials — v1.0
+- ✓ **API-01 through API-07**: Fastify server with health check, CORS, Helmet, Zod validation — v1.0
+- ✓ **FACTORY-01 through FACTORY-09**: Complete factory CRUD API with pagination — v1.0
+- ✓ **GATEWAY-01 through GATEWAY-09**: Complete gateway CRUD API with encrypted passwords — v1.0
+- ✓ **QUAL-01 through QUAL-08**: Modular architecture, type safety, documentation — v1.0
+
 ### Active
 
-**Milestone 1: Database + API Layer:**
-- [ ] **DB-01**: PostgreSQL database setup with Docker Compose
-- [ ] **DB-02**: Schema migrations for organizations, factories, gateways tables
-- [ ] **DB-03**: UUID primary keys, soft deletes, JSONB metadata columns
-- [ ] **REPO-01**: Type-safe repository layer with Kysely
-- [ ] **REPO-02**: FactoryRepository (create, findById, findAll, update, softDelete)
-- [ ] **REPO-03**: GatewayRepository (create, findById, findAll, findActive, update, softDelete)
-- [ ] **CRYPTO-01**: Encrypt gateway passwords before storage (AES-256-GCM)
-- [ ] **CRYPTO-02**: Decrypt passwords for gateway connections
-- [ ] **API-01**: Fastify server with CORS, Helmet, Zod validation
-- [ ] **API-02**: Health check endpoint (GET /api/health)
-- [ ] **API-03**: Standardized error responses with codes
-- [ ] **FACTORY-01**: Create factory (POST /api/factories)
-- [ ] **FACTORY-02**: List factories (GET /api/factories with pagination)
-- [ ] **FACTORY-03**: Get factory by ID (GET /api/factories/:id)
-- [ ] **FACTORY-04**: Update factory (PUT /api/factories/:id)
-- [ ] **FACTORY-05**: Soft delete factory (DELETE /api/factories/:id)
-- [ ] **GATEWAY-01**: Create gateway (POST /api/gateways, encrypt password)
-- [ ] **GATEWAY-02**: List gateways (GET /api/gateways with pagination, filter by factory)
-- [ ] **GATEWAY-03**: Get gateway by ID (GET /api/gateways/:id)
+**Milestone v1.1: Gateway Orchestration & Lifecycle Management:**
+- [ ] **ORCH-01**: GatewayConnectionManager orchestrates multiple WebSocket connections
+- [ ] **ORCH-02**: GatewayRegistry tracks in-memory connection state
+- [ ] **ORCH-03**: Load active gateways from database on startup
+- [ ] **ORCH-04**: Connect all gateways in parallel
+- [ ] **ORCH-05**: Manage 3+ gateways concurrently without interference
+- [ ] **ORCH-06**: Independent failure domains (one gateway failure doesn't cascade)
+- [ ] **LIFECYCLE-01**: Creating gateway via API triggers automatic connection
+- [ ] **LIFECYCLE-02**: Updating gateway URL/credentials triggers reconnection
+- [ ] **LIFECYCLE-03**: Deleting gateway disconnects cleanly and removes from registry
+- [ ] **STATUS-01**: GET /api/gateways/:id/status returns real-time connection state
+- [ ] **STATUS-02**: POST /api/gateways/:id/connect triggers connection
+- [ ] **STATUS-03**: POST /api/gateways/:id/disconnect triggers disconnection
 - [ ] **GATEWAY-04**: Update gateway (PUT /api/gateways/:id, re-encrypt if password changed)
 - [ ] **GATEWAY-05**: Soft delete gateway (DELETE /api/gateways/:id)
 
@@ -153,4 +162,4 @@ From CTC Connect Wireless API documentation:
 | Split M1 into API-first then orchestration | Can progress while M0 Phase 6 pending | — Pending |
 
 ---
-*Last updated: 2026-02-08 after Milestone 1 initialization*
+*Last updated: 2026-02-08 after v1.0 milestone completion*
