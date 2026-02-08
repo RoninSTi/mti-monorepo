@@ -53,7 +53,8 @@ export async function buildApp(options: FastifyServerOptions = {}) {
   await app.register(helmetPlugin);
   await app.register(errorHandlerPlugin);
 
-  // Routes will be registered in Plan 02
+  // Register routes with /api prefix
+  await app.register(import('./routes/health'), { prefix: '/api' });
 
   return app;
 }
