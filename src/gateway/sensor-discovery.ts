@@ -29,11 +29,14 @@ export async function discoverSensor(
     Data: {},
   });
 
-  // responseData is Record<string, unknown> from RTN_DYN.Data
-  // Each key is a sensor serial (as string), value is sensor metadata object
+  // Discovery: Gateway returns array [] when empty, object {...} when sensors exist
   const allSensors: SensorMetadata[] = [];
 
-  if (responseData && typeof responseData === 'object') {
+  if (Array.isArray(responseData)) {
+    // Empty array = no sensors
+    logger.debug('GET_DYN_CONNECTED returned empty array (no sensors connected)');
+  } else if (responseData && typeof responseData === 'object') {
+    // Parse sensor dictionary: { "[serial]": SensorMetadata, ... }
     for (const [serialKey, metadata] of Object.entries(responseData)) {
       const parsed = SensorMetadataSchema.safeParse(metadata);
       if (parsed.success) {

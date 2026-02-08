@@ -73,7 +73,10 @@ export const ReturnDynResponseSchema = z.object({
   From: z.literal('SERV'),
   Target: z.literal('UI'),
   CorrelationId: z.string().uuid().optional(), // Gateway may not return CorrelationId
-  Data: z.record(z.string(), z.unknown()), // Permissive: structure varies by command
+  Data: z.union([
+    z.record(z.string(), z.unknown()), // Object when data exists
+    z.array(z.unknown()), // Array when empty (gateway returns [] for no sensors)
+  ]),
 });
 
 // RTN_ERR: Error response
