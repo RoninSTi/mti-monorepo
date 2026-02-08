@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-02-08)
 
 **Core value:** Build a reliable foundation for multi-gateway factory monitoring: persistent data model, REST API, and connection orchestration
-**Current focus:** Milestone v1.0 - Database + API Layer
+**Current focus:** Milestone v1.1 - Factory & Gateway Management UI
 
 ## Current Position
 
-Milestone: v1.0 Factory and Gateway CRUD (Database + API Layer)
-Phase: 11 - Gateway API CRUD
-Plan: 11-02 of 2
-Status: Phase complete
-Last activity: 2026-02-08 - Completed 11-02-PLAN.md (Gateway API CRUD Routes and README)
+Milestone: v1.1 Factory & Gateway Management UI
+Phase: Not started (defining roadmap)
+Plan: —
+Status: Defining roadmap
+Last activity: 2026-02-08 - Milestone v1.1 requirements defined
 
-Progress: [█████████░░] 95% (21/22 plans complete across all milestones)
+Progress: [          ] 0% (v1.1 starting fresh)
 
 ## Performance Metrics
 

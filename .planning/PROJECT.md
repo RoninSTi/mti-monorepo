@@ -18,19 +18,23 @@ Production-ready REST API for managing factories and gateways with encrypted cre
 **Codebase:** 3,988 lines TypeScript across 59 files
 **UAT:** 10/10 tests passed
 
-## Next Milestone Goals
+## Current Milestone: v1.1 Factory & Gateway Management UI
 
-**v1.1: Gateway Orchestration & Lifecycle Management**
-
-Connect the database + API layer (v1.0) to the gateway integration spike (Milestone 0) with multi-gateway orchestration, lifecycle management, and real-time connection monitoring.
+**Goal:** Build configuration interface for vibration analysts to manage factories and gateways through a web application
 
 **Target Features:**
-- GatewayConnectionManager for multi-gateway orchestration
-- GatewayRegistry for in-memory connection state tracking
-- Load active gateways from database on startup
-- Parallel connection management (3+ gateways concurrently)
-- Gateway lifecycle management (API operations trigger connect/disconnect)
-- Real-time connection status endpoints
+- React + Vite web app with Tailwind CSS + shadcn/ui
+- Factory management UI (list, create, edit, delete)
+- Gateway management UI (list, create, edit, delete with factory filtering)
+- React Query for API state management
+- React Hook Form for form validation
+- Reusable component architecture
+- Theming infrastructure with CSS variables
+
+**Deferred to next milestone:**
+- Real-time gateway connection status (needs gateway orchestration from M0)
+- Alarm monitoring dashboard (needs sensor data APIs)
+- User authentication (future security milestone)
 
 ## Requirements
 
@@ -64,34 +68,30 @@ Connect the database + API layer (v1.0) to the gateway integration spike (Milest
 
 ### Active
 
-**Milestone v1.1: Gateway Orchestration & Lifecycle Management:**
-- [ ] **ORCH-01**: GatewayConnectionManager orchestrates multiple WebSocket connections
-- [ ] **ORCH-02**: GatewayRegistry tracks in-memory connection state
-- [ ] **ORCH-03**: Load active gateways from database on startup
-- [ ] **ORCH-04**: Connect all gateways in parallel
-- [ ] **ORCH-05**: Manage 3+ gateways concurrently without interference
-- [ ] **ORCH-06**: Independent failure domains (one gateway failure doesn't cascade)
-- [ ] **LIFECYCLE-01**: Creating gateway via API triggers automatic connection
-- [ ] **LIFECYCLE-02**: Updating gateway URL/credentials triggers reconnection
-- [ ] **LIFECYCLE-03**: Deleting gateway disconnects cleanly and removes from registry
-- [ ] **STATUS-01**: GET /api/gateways/:id/status returns real-time connection state
-- [ ] **STATUS-02**: POST /api/gateways/:id/connect triggers connection
-- [ ] **STATUS-03**: POST /api/gateways/:id/disconnect triggers disconnection
+**Milestone v1.1: Factory & Gateway Management UI:**
+- [ ] **SETUP-01 through SETUP-07**: React + Vite app with Tailwind, shadcn/ui, React Query, React Hook Form, theming infrastructure
+- [ ] **NAV-01 through NAV-03**: Side navigation and page layout components
+- [ ] **COMP-01 through COMP-05**: Reusable component architecture with TypeScript types
+- [ ] **FACTORY-UI-01 through FACTORY-UI-06**: Complete factory management interface
+- [ ] **GATEWAY-UI-01 through GATEWAY-UI-07**: Complete gateway management interface
+- [ ] **API-INT-01 through API-INT-05**: React Query hooks for API integration
+- [ ] **QUAL-UI-01 through QUAL-UI-05**: TypeScript, consistent patterns, validation, responsive design
 - [ ] **GATEWAY-04**: Update gateway (PUT /api/gateways/:id, re-encrypt if password changed)
 - [ ] **GATEWAY-05**: Soft delete gateway (DELETE /api/gateways/:id)
 
 ### Out of Scope
 
-**This Milestone:**
-- Multi-gateway connection orchestration — next milestone (after M0 Phase 6)
-- Gateway lifecycle management (API → connect/disconnect) — next milestone
-- Real-time connection status monitoring — next milestone
+**This Milestone (v1.1):**
+- User authentication/login — future security milestone, focus on functionality first
+- Real-time gateway connection status — needs gateway orchestration layer (deferred)
+- Alarm monitoring dashboard — needs sensor data APIs (future milestone)
+- Multi-gateway connection orchestration — future milestone (after v1.1)
+- Gateway lifecycle management (API → connect/disconnect) — future milestone
 - Sensor assignment to equipment — Milestone 2
 - Acquisition scheduling — Milestone 3
 - Waveform data persistence — Milestone 3
-- Web UI — future milestone
-- API authentication (JWT/OAuth) — future security milestone
-- Multi-tenancy enforcement — schema supports, but API hardcodes single org for now
+- Multi-tenancy UI — schema supports, but single org for now
+- Mobile responsive (phone-sized) — tablet/desktop sufficient for v1.1
 
 ## Context
 
@@ -162,4 +162,4 @@ From CTC Connect Wireless API documentation:
 | Split M1 into API-first then orchestration | Can progress while M0 Phase 6 pending | — Pending |
 
 ---
-*Last updated: 2026-02-08 after v1.0 milestone completion*
+*Last updated: 2026-02-08 after v1.1 milestone initialization*
