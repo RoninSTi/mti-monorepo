@@ -66,10 +66,12 @@ Plans:
   3. shadcn/ui Button component can be imported and rendered
   4. React Query DevTools show in browser for debugging API calls
   5. API client successfully fetches data from backend at http://localhost:3000
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD (planning in progress)
+- [ ] 12-01-PLAN.md -- Scaffold Vite + React + TypeScript project with Tailwind CSS v4
+- [ ] 12-02-PLAN.md -- Initialize shadcn/ui components and CSS variable theming
+- [ ] 12-03-PLAN.md -- Configure React Query, API client, TypeScript types, and React Hook Form
 
 #### Phase 13: Component Architecture
 **Goal**: Reusable component library and navigation layout
@@ -159,7 +161,7 @@ Phases execute in numeric order: 12 → 13 → 14 → 15 → 16 → 17
 | 9. API Framework | v1.0 | 1/1 | Complete | 2026-02-08 |
 | 10. Factory API | v1.0 | 2/2 | Complete | 2026-02-08 |
 | 11. Gateway API | v1.0 | 2/2 | Complete | 2026-02-08 |
-| 12. Frontend Foundation | v1.1 | 0/? | Not started | - |
+| 12. Frontend Foundation | v1.1 | 0/3 | Planned | - |
 | 13. Component Architecture | v1.1 | 0/? | Not started | - |
 | 14. API Integration Layer | v1.1 | 0/? | Not started | - |
 | 15. Factory Management UI | v1.1 | 0/? | Not started | - |
