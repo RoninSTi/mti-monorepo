@@ -83,10 +83,12 @@ Plans:
   3. UI components (Button, Input, Card, Table, Modal) exist with consistent styling
   4. Developer can import shared components with full TypeScript autocomplete
   5. All components follow consistent Tailwind class patterns
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD (planning in progress)
+- [ ] 13-01-PLAN.md -- Install dependencies and add shadcn/ui component library (Input, Card, Table, Dialog, Label, Badge)
+- [ ] 13-02-PLAN.md -- Configure React Router, build AppLayout with Sidebar navigation and placeholder pages
+- [ ] 13-03-PLAN.md -- Create reusable FactoryForm and GatewayForm components with Zod validation
 
 #### Phase 14: API Integration Layer
 **Goal**: Type-safe React Query hooks connecting frontend to backend API
