@@ -55,6 +55,7 @@ export async function buildApp(options: FastifyServerOptions = {}) {
 
   // Register routes with /api prefix
   await app.register(import('./routes/health'), { prefix: '/api' });
+  await app.register(import('./routes/factories'), { prefix: '/api/factories' });
 
   return app;
 }
