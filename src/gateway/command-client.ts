@@ -77,6 +77,7 @@ export class CommandClient {
 
       // Serialize and send WITHOUT CorrelationId (gateway doesn't support it)
       const message = JSON.stringify(command);
+      logger.debug(`Sending to gateway: ${message}`); // Debug: verify no CorrelationId
       const sent = this.sendFn(message);
 
       logger.debug(`Sent command: ${command.Type}, CorrelationId: ${correlationId} (internal tracking only)`);
@@ -90,8 +91,6 @@ export class CommandClient {
         reject(error);
         return;
       }
-
-      logger.debug(`Sent command: ${command.Type}, CorrelationId: ${correlationId}`);
     });
   }
 
