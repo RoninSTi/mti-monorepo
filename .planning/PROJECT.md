@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A TypeScript/Node.js application for industrial vibration monitoring that connects to CTC Connect Wireless gateways to manage sensors, collect waveform data, and monitor equipment health across multiple factories. Currently building the production data layer and REST API for factory and gateway management.
+A TypeScript/Node.js application for industrial vibration monitoring that connects to CTC Connect Wireless gateways to manage sensors, collect waveform data, and monitor equipment health across multiple factories. Includes production REST API for managing factories and gateways with encrypted credentials, plus complete React web interface for configuration.
 
 ## Core Value
 
@@ -10,31 +10,17 @@ Build a reliable foundation for multi-gateway factory monitoring: persistent dat
 
 ## Current State
 
-**Latest Release:** v1.0 Database + API Layer (Shipped: 2026-02-08)
+**Latest Release:** v1.1 Factory & Gateway Management UI (Shipped: 2026-02-11)
 
-Production-ready REST API for managing factories and gateways with encrypted credential storage. Complete database schema with PostgreSQL, type-safe repository layer with Kysely, and full CRUD operations via Fastify.
+Complete web application for managing factory and gateway configurations. Vibration analysts can create/edit/delete factories, manage gateway connections with factory filtering, and configure credentials through responsive UI with validation.
 
-**Tech Stack:** TypeScript, Node.js, PostgreSQL 15, Kysely, Fastify, Zod, AES-256-GCM encryption
-**Codebase:** 3,988 lines TypeScript across 59 files
-**UAT:** 10/10 tests passed
+**Tech Stack:**
+- **Backend:** TypeScript, Node.js, PostgreSQL 15, Kysely, Fastify, Zod, AES-256-GCM encryption
+- **Frontend:** React 19, TypeScript 5.9, Vite 7, Tailwind CSS v4, shadcn/ui, React Query, React Hook Form
 
-## Current Milestone: v1.1 Factory & Gateway Management UI
-
-**Goal:** Build configuration interface for vibration analysts to manage factories and gateways through a web application
-
-**Target Features:**
-- React + Vite web app with Tailwind CSS + shadcn/ui
-- Factory management UI (list, create, edit, delete)
-- Gateway management UI (list, create, edit, delete with factory filtering)
-- React Query for API state management
-- React Hook Form for form validation
-- Reusable component architecture
-- Theming infrastructure with CSS variables
-
-**Deferred to next milestone:**
-- Real-time gateway connection status (needs gateway orchestration from M0)
-- Alarm monitoring dashboard (needs sensor data APIs)
-- User authentication (future security milestone)
+**Codebase:** 6,226 lines TypeScript (3,988 backend + 2,238 frontend) across 136 files
+**Quality:** Zero TypeScript errors (strict mode), zero ESLint errors, production builds passing
+**Testing:** Phase verification: 63/63 must-haves, integration check: 100% wiring, E2E flows: 3/3 complete
 
 ## Requirements
 
@@ -66,18 +52,18 @@ Production-ready REST API for managing factories and gateways with encrypted cre
 - ✓ **GATEWAY-01 through GATEWAY-09**: Complete gateway CRUD API with encrypted passwords — v1.0
 - ✓ **QUAL-01 through QUAL-08**: Modular architecture, type safety, documentation — v1.0
 
+**Milestone v1.1** (shipped 2026-02-11):
+- ✓ **SETUP-01 through SETUP-07**: React + Vite app with Tailwind CSS v4, shadcn/ui, React Query, React Hook Form, theming infrastructure — v1.1
+- ✓ **NAV-01 through NAV-03**: Side navigation, page layout, React Router routing — v1.1
+- ✓ **COMP-01 through COMP-05**: Component library with forms, organized directories, TypeScript types, Tailwind patterns — v1.1
+- ✓ **FACTORY-UI-01 through FACTORY-UI-06**: Complete factory CRUD interface with table, dialogs, toasts, loading states — v1.1
+- ✓ **GATEWAY-UI-01 through GATEWAY-UI-07**: Complete gateway CRUD interface with factory filtering and password security — v1.1
+- ✓ **API-INT-01 through API-INT-05**: React Query hooks, error handling, optimistic updates — v1.1
+- ✓ **QUAL-UI-01 through QUAL-UI-05**: TypeScript strict mode, consistent patterns, form validation, responsive design, comprehensive README — v1.1
+
 ### Active
 
-**Milestone v1.1: Factory & Gateway Management UI:**
-- [ ] **SETUP-01 through SETUP-07**: React + Vite app with Tailwind, shadcn/ui, React Query, React Hook Form, theming infrastructure
-- [ ] **NAV-01 through NAV-03**: Side navigation and page layout components
-- [ ] **COMP-01 through COMP-05**: Reusable component architecture with TypeScript types
-- [ ] **FACTORY-UI-01 through FACTORY-UI-06**: Complete factory management interface
-- [ ] **GATEWAY-UI-01 through GATEWAY-UI-07**: Complete gateway management interface
-- [ ] **API-INT-01 through API-INT-05**: React Query hooks for API integration
-- [ ] **QUAL-UI-01 through QUAL-UI-05**: TypeScript, consistent patterns, validation, responsive design
-- [ ] **GATEWAY-04**: Update gateway (PUT /api/gateways/:id, re-encrypt if password changed)
-- [ ] **GATEWAY-05**: Soft delete gateway (DELETE /api/gateways/:id)
+None - Ready to plan next milestone.
 
 ### Out of Scope
 
@@ -153,13 +139,20 @@ From CTC Connect Wireless API documentation:
 | TypeScript + Node.js | Type safety + async model + code sharing | ✓ Good — Validated in M0 |
 | `ws` package for WebSocket | Standard, well-maintained, lower-level control | ✓ Good — Works reliably in M0 |
 | Modular architecture | Separate concerns for multi-gateway future | ✓ Good — M0 patterns scale to M1 |
-| PostgreSQL over MongoDB | Relational model + JSONB flexibility + TypeScript ecosystem | — Pending |
-| Kysely over ORM | Type-safe SQL without magic, explicit queries | — Pending |
-| Fastify over Express | TypeScript-first, high performance, built-in validation | — Pending |
-| Encrypt (not hash) gateway passwords | Need plaintext to authenticate with gateways | — Pending |
-| Soft deletes | Preserve audit trail, avoid cascading hard deletes | — Pending |
-| In-memory connection state | Ephemeral by nature, only last_seen_at persisted | — Pending |
-| Split M1 into API-first then orchestration | Can progress while M0 Phase 6 pending | — Pending |
+| PostgreSQL over MongoDB | Relational model + JSONB flexibility + TypeScript ecosystem | ✓ Good — Validated in v1.0 |
+| Kysely over ORM | Type-safe SQL without magic, explicit queries | ✓ Good — Validated in v1.0 |
+| Fastify over Express | TypeScript-first, high performance, built-in validation | ✓ Good — Validated in v1.0 |
+| Encrypt (not hash) gateway passwords | Need plaintext to authenticate with gateways | ✓ Good — AES-256-GCM working in v1.0 |
+| Soft deletes | Preserve audit trail, avoid cascading hard deletes | ✓ Good — v1.0 implementation |
+| In-memory connection state | Ephemeral by nature, only last_seen_at persisted | — Pending (M0 Phase 6) |
+| React + Vite + Tailwind CSS v4 | Modern frontend stack, fast dev, utility-first CSS | ✓ Good — Validated in v1.1 |
+| shadcn/ui components | Copy-paste components, full control, consistent design | ✓ Good — Validated in v1.1 |
+| React Query for server state | Caching, optimistic updates, excellent DX | ✓ Good — Validated in v1.1 |
+| React Hook Form + Zod | Type-safe forms, minimal re-renders, clear validation | ✓ Good — Validated in v1.1 |
+| No authentication in v1.1 | Focus on configuration UI, security in future milestone | ✓ Good — Shipped v1.1 on schedule |
+| Native select elements | Sufficient for v1.1, accessible by default | ✓ Good — Works well in production |
+| Client-side factory name lookup | Simple join via helper function vs backend join | ✓ Good — Keeps API simple |
+| Password blank in edit mode | GATEWAY-07 security requirement | ✓ Good — Never exposes passwords |
 
 ---
-*Last updated: 2026-02-08 after v1.1 milestone initialization*
+*Last updated: 2026-02-11 after v1.1 milestone completion*
