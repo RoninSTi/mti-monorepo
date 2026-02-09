@@ -2,9 +2,9 @@
  * Frontend TypeScript types matching backend API schemas.
  *
  * These are manually maintained to match the Zod schemas in:
- * - src/api/schemas/factories.ts
- * - src/api/schemas/gateways.ts
- * - src/api/schemas/common.ts
+ * - backend/src/api/schemas/factories.ts
+ * - backend/src/api/schemas/gateways.ts
+ * - backend/src/api/schemas/common.ts
  *
  * If backend schemas change, update these types to match.
  */
