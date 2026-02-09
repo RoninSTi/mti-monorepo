@@ -116,10 +116,11 @@ Plans:
   3. User can edit existing factory with form pre-populated with current values
   4. User can delete factory after confirming in modal dialog
   5. All operations show success/error notifications and loading spinners during requests
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD (planning in progress)
+- [ ] 15-01-PLAN.md -- Install Sonner + AlertDialog components and wire Toaster into app root
+- [ ] 15-02-PLAN.md -- Implement FactoriesPage with full CRUD (table, dialogs, toasts, loading states)
 
 #### Phase 16: Gateway Management UI
 **Goal**: Complete gateway CRUD interface with factory filtering and secure password handling
