@@ -119,8 +119,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 15-01-PLAN.md -- Install Sonner + AlertDialog components and wire Toaster into app root
-- [ ] 15-02-PLAN.md -- Implement FactoriesPage with full CRUD (table, dialogs, toasts, loading states)
+- [x] 15-01-PLAN.md -- Install Sonner + AlertDialog components and wire Toaster into app root
+- [x] 15-02-PLAN.md -- Implement FactoriesPage with full CRUD (table, dialogs, toasts, loading states)
 
 #### Phase 16: Gateway Management UI
 **Goal**: Complete gateway CRUD interface with factory filtering and secure password handling
@@ -168,7 +168,7 @@ Phases execute in numeric order: 12 → 13 → 14 → 15 → 16 → 17
 | 12. Frontend Foundation | v1.1 | 3/3 | Complete | 2026-02-08 |
 | 13. Component Architecture | v1.1 | 3/3 | Complete | 2026-02-08 |
 | 14. API Integration Layer | v1.1 | 2/2 | Complete | 2026-02-09 |
-| 15. Factory Management UI | v1.1 | 0/? | Not started | - |
+| 15. Factory Management UI | v1.1 | 2/2 | Complete | 2026-02-09 |
 | 16. Gateway Management UI | v1.1 | 0/? | Not started | - |
 | 17. Quality & Polish | v1.1 | 0/? | Not started | - |
 
