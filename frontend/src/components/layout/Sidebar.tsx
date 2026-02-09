@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 
 export function Sidebar() {
   return (
-    <aside className="w-64 border-r bg-background">
+    <aside className="hidden md:flex w-64 border-r bg-background">
       <div className="flex flex-col h-full">
         {/* App branding */}
         <div className="p-6 border-b">
