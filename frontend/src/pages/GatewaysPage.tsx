@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
@@ -132,11 +133,9 @@ export function GatewaysPage() {
       <Card className="border-destructive">
         <CardHeader>
           <CardTitle className="text-destructive">Error Loading Gateways</CardTitle>
+          <CardDescription>{error?.message || 'An unknown error occurred'}</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground mb-4">
-            {error?.message || 'An unknown error occurred'}
-          </p>
           <Button onClick={() => window.location.reload()}>Try Again</Button>
         </CardContent>
       </Card>
