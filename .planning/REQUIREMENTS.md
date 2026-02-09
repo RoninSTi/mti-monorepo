@@ -42,13 +42,13 @@ Requirements for Milestone v1.1: Factory & Gateway Management UI (Web Applicatio
 
 ### Gateway Management UI
 
-- [ ] **GATEWAY-UI-01**: Gateway list page shows all gateways with factory information
-- [ ] **GATEWAY-UI-02**: Filter gateways by factory
-- [ ] **GATEWAY-UI-03**: Create gateway form with validation (factory select, gateway ID, URL, email, password, model, firmware)
-- [ ] **GATEWAY-UI-04**: Edit gateway form (update connection details, optionally change password)
-- [ ] **GATEWAY-UI-05**: Delete gateway with confirmation modal
-- [ ] **GATEWAY-UI-06**: Success/error notifications for all gateway operations
-- [ ] **GATEWAY-UI-07**: Loading states while fetching/submitting data
+- [x] **GATEWAY-UI-01**: Gateway list page shows all gateways with factory information
+- [x] **GATEWAY-UI-02**: Filter gateways by factory
+- [x] **GATEWAY-UI-03**: Create gateway form with validation (factory select, gateway ID, URL, email, password, model, firmware)
+- [x] **GATEWAY-UI-04**: Edit gateway form (update connection details, optionally change password)
+- [x] **GATEWAY-UI-05**: Delete gateway with confirmation modal
+- [x] **GATEWAY-UI-06**: Success/error notifications for all gateway operations
+- [x] **GATEWAY-UI-07**: Loading states while fetching/submitting data
 
 ### API Integration
 
