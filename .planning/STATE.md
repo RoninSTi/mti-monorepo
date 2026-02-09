@@ -10,19 +10,19 @@ See: .planning/PROJECT.md (updated 2026-02-08)
 ## Current Position
 
 Milestone: v1.1 Factory & Gateway Management UI
-Phase: 14 of 17 (API Integration Layer)
-Plan: 2 of 2 in current phase
-Status: Phase complete
-Last activity: 2026-02-09 — Completed 14-02-PLAN.md
+Phase: 15 of 17 (Factory Management UI)
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-02-09 — Completed 15-01-PLAN.md
 
-Progress: [███████████░░░░░░░░░] 57% (31 plans complete)
+Progress: [███████████░░░░░░░░░] 59% (32 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 31 (M0 + v1.0 + v1.1)
+- Total plans completed: 32 (M0 + v1.0 + v1.1)
 - Average duration: 2 min
-- Total execution time: 1.00 hours
+- Total execution time: 1.06 hours
 
 **By Phase:**
 
@@ -41,10 +41,11 @@ Progress: [███████████░░░░░░░░░] 57% (31
 | 12. Frontend Foundation | 3/3 | 6min | 2min |
 | 13. Component Architecture | 3/3 | 8min | 3min |
 | 14. API Integration Layer | 2/2 | 1min | 1min |
+| 15. Factory Management UI | 1/2 | 3min | 3min |
 
 **Recent Trend:**
-- Last 5 plans: 13-02 (2min), 13-03 (2min), 14-01 (1min), 14-02 (<1min)
-- Trend: Phase 14 complete - API integration layer averaged <1min/plan
+- Last 5 plans: 13-03 (2min), 14-01 (1min), 14-02 (<1min), 15-01 (3min)
+- Trend: Phase 15 started - UI component installation 3min
 
 *Updated after each plan completion*
 
@@ -81,6 +82,9 @@ Recent decisions affecting v1.1 work:
 | Optimistic updates with snapshot-rollback | Responsive UX with server sync fallback | Phase 14+ mutations |
 | Global QueryCache error handler | Logs background query failures, toast UI in Phase 15 | Phase 14+ error handling |
 | Factory filter in gateway query keys | Prevents stale data when filter changes (Pitfall 2 avoidance) | Phase 14-02 useGateways |
+| Sonner for toast notifications | shadcn/ui integration, excellent UX, app-wide availability | Phase 15-01 |
+| Hardcode light theme in Toaster | No dark mode in v1.1, avoid next-themes dependency | Phase 15-01 |
+| Fix shadcn CLI generated bugs | CLI creates literal @/ directory, incorrect imports need manual fix | Phase 15-01 |
 
 **Previous milestone decisions (v1.0):**
 - PostgreSQL + Kysely: Type-safe SQL, production-ready
@@ -111,12 +115,13 @@ None yet.
 - ✅ Phase 14 complete: API Integration Layer (2/2 plans complete)
   - ✅ 14-01: Factory CRUD hooks with query key factory and global error handling
   - ✅ 14-02: Gateway CRUD hooks with factory filtering and optimistic updates
-- ⏳ Phase 15: Factory Management Pages pending
+- ⏳ Phase 15: Factory Management UI (1/2 plans complete)
+  - ✅ 15-01: Sonner toast and AlertDialog components with app root integration
 
 ## Session Continuity
 
 Last session: 2026-02-09
-Stopped at: Completed 14-02-PLAN.md
+Stopped at: Completed 15-01-PLAN.md
 Resume file: None
 
 ---
