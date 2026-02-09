@@ -10,19 +10,19 @@ See: .planning/PROJECT.md (updated 2026-02-08)
 ## Current Position
 
 Milestone: v1.1 Factory & Gateway Management UI
-Phase: 13 of 17 (Component Architecture)
-Plan: 3 of 3 in current phase
+Phase: 14 of 17 (API Integration Layer)
+Plan: 2 of 2 in current phase
 Status: Phase complete
-Last activity: 2026-02-08 — Completed 13-03-PLAN.md
+Last activity: 2026-02-09 — Completed 14-02-PLAN.md
 
-Progress: [██████████░░░░░░░░░░] 52% (28 plans complete)
+Progress: [███████████░░░░░░░░░] 57% (31 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 28 (M0 + v1.0 + v1.1)
+- Total plans completed: 31 (M0 + v1.0 + v1.1)
 - Average duration: 2 min
-- Total execution time: 0.98 hours
+- Total execution time: 1.00 hours
 
 **By Phase:**
 
@@ -40,10 +40,11 @@ Progress: [██████████░░░░░░░░░░] 52% (28
 | 11. Gateway API CRUD | 2/2 | 4min | 2min |
 | 12. Frontend Foundation | 3/3 | 6min | 2min |
 | 13. Component Architecture | 3/3 | 8min | 3min |
+| 14. API Integration Layer | 2/2 | 1min | 1min |
 
 **Recent Trend:**
-- Last 5 plans: 12-03 (2min), 13-01 (4min), 13-02 (2min), 13-03 (2min)
-- Trend: Phase 13 complete - averaged 3min/plan (component architecture)
+- Last 5 plans: 13-02 (2min), 13-03 (2min), 14-01 (1min), 14-02 (<1min)
+- Trend: Phase 14 complete - API integration layer averaged <1min/plan
 
 *Updated after each plan completion*
 
@@ -76,6 +77,10 @@ Recent decisions affecting v1.1 work:
 | Native select for factory dropdown | Sufficient for v1.1, accessible by default | Phase 13-03 GatewayForm |
 | Form isSubmitting as prop | Parent controls submission state via React Query | Phase 13-03 forms |
 | No authentication in v1.1 | Focus on configuration UI, security in future milestone | All phases |
+| Query key factory hierarchical keys | Enables precise cache invalidation (lists vs details) | Phase 14+ hooks |
+| Optimistic updates with snapshot-rollback | Responsive UX with server sync fallback | Phase 14+ mutations |
+| Global QueryCache error handler | Logs background query failures, toast UI in Phase 15 | Phase 14+ error handling |
+| Factory filter in gateway query keys | Prevents stale data when filter changes (Pitfall 2 avoidance) | Phase 14-02 useGateways |
 
 **Previous milestone decisions (v1.0):**
 - PostgreSQL + Kysely: Type-safe SQL, production-ready
@@ -103,13 +108,16 @@ None yet.
   - ✅ 13-01: Component library + dependencies (7 UI components, routing, validation)
   - ✅ 13-02: Routing & Layout (AppLayout, Sidebar, 3 placeholder pages, React Router nested routes)
   - ✅ 13-03: Forms & Validation (FactoryForm, GatewayForm with Zod)
-- ⏳ Phase 14: API Integration Layer pending
+- ✅ Phase 14 complete: API Integration Layer (2/2 plans complete)
+  - ✅ 14-01: Factory CRUD hooks with query key factory and global error handling
+  - ✅ 14-02: Gateway CRUD hooks with factory filtering and optimistic updates
+- ⏳ Phase 15: Factory Management Pages pending
 
 ## Session Continuity
 
-Last session: 2026-02-08
-Stopped at: Completed 13-03-PLAN.md
+Last session: 2026-02-09
+Stopped at: Completed 14-02-PLAN.md
 Resume file: None
 
 ---
-*Last updated: 2026-02-08*
+*Last updated: 2026-02-09*
