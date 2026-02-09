@@ -104,7 +104,7 @@ Plans:
 
 Plans:
 - [x] 14-01-PLAN.md -- Factory CRUD hooks with query key factory and global error handling
-- [ ] 14-02-PLAN.md -- Gateway CRUD hooks with query key factory and factory filtering
+- [x] 14-02-PLAN.md -- Gateway CRUD hooks with query key factory and factory filtering
 
 #### Phase 15: Factory Management UI
 **Goal**: Complete factory CRUD interface with validation and user feedback
@@ -166,7 +166,7 @@ Phases execute in numeric order: 12 → 13 → 14 → 15 → 16 → 17
 | 11. Gateway API | v1.0 | 2/2 | Complete | 2026-02-08 |
 | 12. Frontend Foundation | v1.1 | 3/3 | Complete | 2026-02-08 |
 | 13. Component Architecture | v1.1 | 3/3 | Complete | 2026-02-08 |
-| 14. API Integration Layer | v1.1 | 1/2 | In progress | 2026-02-09 |
+| 14. API Integration Layer | v1.1 | 2/2 | Complete | 2026-02-09 |
 | 15. Factory Management UI | v1.1 | 0/? | Not started | - |
 | 16. Gateway Management UI | v1.1 | 0/? | Not started | - |
 | 17. Quality & Polish | v1.1 | 0/? | Not started | - |
