@@ -1,10 +1,11 @@
 import { QueryClient, QueryCache } from '@tanstack/react-query'
-import type { ApiError } from '@/types/api'
 
 const queryCache = new QueryCache({
   onError: (error) => {
-    const apiError = error as ApiError
-    const message = apiError?.message || 'An unexpected error occurred'
+    // Handle both ApiError (from fetch) and generic Error objects
+    const message = error instanceof Error
+      ? error.message
+      : 'An unexpected error occurred'
     console.error('Background query error:', message)
   },
 })
