@@ -1,14 +1,13 @@
-import { describe, it, beforeEach, afterEach, mock } from 'node:test';
-import assert from 'node:assert/strict';
+import { describe, it, beforeEach, afterEach, expect, vi } from 'vitest';
 import { CommandClient } from './command-client';
 import type { SendCommand, ResponseMessage, ReturnErrorResponse } from '../types/messages';
 
 describe('CommandClient', () => {
-  let sendFn: ReturnType<typeof mock.fn>;
+  let sendFn: ReturnType<typeof vi.fn>;
   let client: CommandClient;
 
   beforeEach(() => {
-    sendFn = mock.fn((message: string) => true);
+    sendFn = vi.fn((message: string) => true);
     client = new CommandClient(sendFn as any, 1000); // 1s timeout for tests
   });
 
@@ -32,20 +31,23 @@ describe('CommandClient', () => {
       const promise = client.sendCommand(command);
 
       // Verify sendFn was called
-      assert.equal(sendFn.mock.calls.length, 1);
-      const sentMessage = sendFn.mock.calls[0].arguments[0];
+      expect(sendFn).toHaveBeenCalledTimes(1);
+      const sentMessage = sendFn.mock.calls[0]?.[0];
       const sentCommand = JSON.parse(sentMessage);
 
-      // Verify correlation ID was injected
-      assert.ok(sentCommand.CorrelationId);
-      assert.match(sentCommand.CorrelationId, /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
+      // Verify command was sent (no CorrelationId in message - gateway doesn't support it)
+      expect(sentCommand.Type).toBe('POST_LOGIN');
+      expect(sentCommand.Data.Email).toBe('test@example.com');
 
-      // Simulate response
+      // Verify command client is tracking this request
+      expect(client.getPendingCount()).toBe(1);
+
+      // Simulate response - use FIFO matching (no CorrelationId in response either)
       const response: ResponseMessage = {
         Type: 'RTN_DYN',
         From: 'SERV',
         Target: 'UI',
-        CorrelationId: sentCommand.CorrelationId,
+        CorrelationId: undefined as any, // Gateway doesn't return CorrelationId
         Data: { success: true, token: 'abc123' },
       };
 
@@ -53,7 +55,7 @@ describe('CommandClient', () => {
 
       // Should resolve with response data
       const result = await promise;
-      assert.deepEqual(result, { success: true, token: 'abc123' });
+      expect(result).toEqual({ success: true, token: 'abc123' });
     });
 
     it('should reject with timeout error when no response arrives', async () => {
@@ -67,16 +69,10 @@ describe('CommandClient', () => {
       const promise = client.sendCommand(command, 100); // 100ms timeout
 
       // Wait for timeout
-      await assert.rejects(
-        promise,
-        (error: Error) => {
-          assert.match(error.message, /timeout/i);
-          return true;
-        }
-      );
+      await expect(promise).rejects.toThrow(/timeout/i);
 
       // Verify no pending requests remain (cleanup)
-      assert.equal(client.getPendingCount(), 0);
+      expect(client.getPendingCount()).toBe(0);
     });
 
     it('should reject with RTN_ERR details when error response received', async () => {
@@ -92,16 +88,16 @@ describe('CommandClient', () => {
 
       const promise = client.sendCommand(command);
 
-      // Get the correlation ID
-      const sentMessage = sendFn.mock.calls[0].arguments[0];
-      const sentCommand = JSON.parse(sentMessage);
+      // Verify command sent
+      expect(sendFn).toHaveBeenCalledTimes(1);
+      expect(client.getPendingCount()).toBe(1);
 
-      // Simulate error response
+      // Simulate error response - FIFO matching (no CorrelationId)
       const errorResponse: ReturnErrorResponse = {
         Type: 'RTN_ERR',
         From: 'SERV',
         Target: 'UI',
-        CorrelationId: sentCommand.CorrelationId,
+        CorrelationId: undefined as any, // Gateway doesn't return CorrelationId
         Data: {
           Attempt: 'POST_LOGIN',
           Error: 'Invalid credentials',
@@ -111,18 +107,12 @@ describe('CommandClient', () => {
       client.handleResponse(errorResponse);
 
       // Should reject with error containing Attempt and Error fields
-      await assert.rejects(
-        promise,
-        (error: Error) => {
-          assert.match(error.message, /Invalid credentials/);
-          assert.match(error.message, /POST_LOGIN/);
-          return true;
-        }
-      );
+      await expect(promise).rejects.toThrow(/Invalid credentials/);
+      await expect(promise).rejects.toThrow(/POST_LOGIN/);
     });
 
     it('should reject immediately when sendFn returns false', async () => {
-      const failingSendFn = mock.fn((message: string) => false);
+      const failingSendFn = vi.fn((message: string) => false);
       const failingClient = new CommandClient(failingSendFn as any, 1000);
 
       const command: SendCommand = {
@@ -135,13 +125,7 @@ describe('CommandClient', () => {
         },
       };
 
-      await assert.rejects(
-        failingClient.sendCommand(command),
-        (error: Error) => {
-          assert.match(error.message, /Connection not available/i);
-          return true;
-        }
-      );
+      await expect(failingClient.sendCommand(command)).rejects.toThrow(/Connection not available/i);
 
       failingClient.cleanup();
     });
@@ -158,9 +142,9 @@ describe('CommandClient', () => {
       };
 
       // Should not throw
-      assert.doesNotThrow(() => {
+      expect(() => {
         client.handleResponse(unknownResponse);
-      });
+      }).not.toThrow();
     });
   });
 
@@ -184,30 +168,17 @@ describe('CommandClient', () => {
       const promise2 = client.sendCommand(command2);
 
       // Verify 2 pending requests
-      assert.equal(client.getPendingCount(), 2);
+      expect(client.getPendingCount()).toBe(2);
 
       // Cleanup
       client.cleanup();
 
       // Both should reject
-      await assert.rejects(
-        promise1,
-        (error: Error) => {
-          assert.match(error.message, /shutting down/i);
-          return true;
-        }
-      );
-
-      await assert.rejects(
-        promise2,
-        (error: Error) => {
-          assert.match(error.message, /shutting down/i);
-          return true;
-        }
-      );
+      await expect(promise1).rejects.toThrow(/shutting down/i);
+      await expect(promise2).rejects.toThrow(/shutting down/i);
 
       // No pending requests remain
-      assert.equal(client.getPendingCount(), 0);
+      expect(client.getPendingCount()).toBe(0);
     });
   });
 
@@ -222,26 +193,25 @@ describe('CommandClient', () => {
 
       const promise = client.sendCommand(command, 100); // 100ms timeout
 
-      // Get correlation ID
-      const sentMessage = sendFn.mock.calls[0].arguments[0];
-      const sentCommand = JSON.parse(sentMessage);
+      // Verify command sent
+      expect(sendFn).toHaveBeenCalledTimes(1);
 
       // Wait for timeout to fire
-      await assert.rejects(promise, /timeout/i);
+      await expect(promise).rejects.toThrow(/timeout/i);
 
-      // Now try to handle response (arrives late)
+      // Now try to handle response (arrives late, after timeout)
       const lateResponse: ResponseMessage = {
         Type: 'RTN_DYN',
         From: 'SERV',
         Target: 'UI',
-        CorrelationId: sentCommand.CorrelationId,
+        CorrelationId: undefined as any, // Gateway doesn't return CorrelationId
         Data: { sensors: [] },
       };
 
       // Should log warning and not crash (no pending entry found)
-      assert.doesNotThrow(() => {
+      expect(() => {
         client.handleResponse(lateResponse);
-      });
+      }).not.toThrow();
     });
   });
 });
