@@ -13,9 +13,12 @@ Milestone: v1.1 Factory & Gateway Management UI - SHIPPED
 Phase: Ready to plan next milestone
 Plan: N/A
 Status: Milestone complete, archived
-Last activity: 2026-02-11 — v1.1 milestone complete and archived
+Last activity: 2026-02-09 — Quick task 001 complete (monorepo reorganization)
 
 Progress: [█████████████░░░░░░░] 69% (37 plans complete across all milestones)
+
+**Quick Tasks Completed:**
+- ✅ Quick-001: Reorganize monorepo - move backend to backend/ directory (2026-02-09)
 
 ## Performance Metrics
 
@@ -56,7 +59,16 @@ Progress: [█████████████░░░░░░░] 69% (37
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting v1.1 work:
+
+**Quick task decisions:**
+
+| Decision | Rationale | Impact |
+|----------|-----------|--------|
+| npm workspaces for monorepo | Native npm solution, no additional tooling needed for 2-workspace setup | Quick-001 structure |
+| Root package.json as orchestrator | Convenience scripts route to workspaces, maintains familiar DX | Quick-001 scripts |
+| Preserve git history with git mv | Maintains blame/log history for all moved files | Quick-001 migration |
+
+**Recent decisions affecting v1.1 work:**
 
 | Decision | Rationale | Impact |
 |----------|-----------|--------|
@@ -147,9 +159,9 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-11
-Stopped at: Completed Phase 17 (Milestone v1.1 complete)
+Last session: 2026-02-09
+Stopped at: Completed quick-001 (monorepo reorganization)
 Resume file: None
 
 ---
-*Last updated: 2026-02-11*
+*Last updated: 2026-02-09*
