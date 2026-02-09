@@ -52,7 +52,7 @@ Plans:
 
 </details>
 
-### 🚧 v1.1 Factory & Gateway Management UI (In Progress)
+### v1.1 Factory & Gateway Management UI (In Progress)
 
 **Milestone Goal:** Build configuration interface for vibration analysts to manage factories and gateways through a web application
 
@@ -133,10 +133,10 @@ Plans:
   4. User can edit gateway details and optionally change password (password field blank by default, only updates if filled)
   5. User can delete gateway after confirming in modal dialog
   6. All operations show success/error notifications and loading spinners during requests
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] TBD (planning in progress)
+- [ ] 16-01-PLAN.md -- Implement GatewaysPage with full CRUD, factory filtering, and secure password handling
 
 #### Phase 17: Quality & Polish
 **Goal**: Production-ready code with validation, responsive design, and documentation
@@ -156,7 +156,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 12 → 13 → 14 → 15 → 16 → 17
+Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -169,7 +169,7 @@ Phases execute in numeric order: 12 → 13 → 14 → 15 → 16 → 17
 | 13. Component Architecture | v1.1 | 3/3 | Complete | 2026-02-08 |
 | 14. API Integration Layer | v1.1 | 2/2 | Complete | 2026-02-09 |
 | 15. Factory Management UI | v1.1 | 2/2 | Complete | 2026-02-09 |
-| 16. Gateway Management UI | v1.1 | 0/? | Not started | - |
+| 16. Gateway Management UI | v1.1 | 0/1 | Not started | - |
 | 17. Quality & Polish | v1.1 | 0/? | Not started | - |
 
 ---
