@@ -10,19 +10,19 @@ See: .planning/PROJECT.md (updated 2026-02-08)
 ## Current Position
 
 Milestone: v1.1 Factory & Gateway Management UI
-Phase: 15 of 17 (Factory Management UI)
-Plan: 2 of 2 in current phase
+Phase: 16 of 17 (Gateway Management UI)
+Plan: 1 of 1 in current phase
 Status: Phase complete
-Last activity: 2026-02-09 — Completed Phase 15
+Last activity: 2026-02-08 — Completed 16-01-PLAN.md
 
-Progress: [████████████░░░░░░░░] 61% (33 plans complete)
+Progress: [█████████████░░░░░░░] 63% (34 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 33 (M0 + v1.0 + v1.1)
+- Total plans completed: 34 (M0 + v1.0 + v1.1)
 - Average duration: 2 min
-- Total execution time: 1.07 hours
+- Total execution time: 1.10 hours
 
 **By Phase:**
 
@@ -42,10 +42,11 @@ Progress: [████████████░░░░░░░░] 61% (33
 | 13. Component Architecture | 3/3 | 8min | 3min |
 | 14. API Integration Layer | 2/2 | 1min | 1min |
 | 15. Factory Management UI | 2/2 | 5min | 3min |
+| 16. Gateway Management UI | 1/1 | 3min | 3min |
 
 **Recent Trend:**
-- Last 5 plans: 13-03 (2min), 14-01 (1min), 14-02 (<1min), 15-01 (3min), 15-02 (2min)
-- Trend: Phase 15 complete - Factory UI averaged 3min/plan (includes bug fixes)
+- Last 5 plans: 14-01 (1min), 14-02 (<1min), 15-01 (3min), 15-02 (2min), 16-01 (3min)
+- Trend: Phase 16 complete - Gateway UI matched Factory UI performance
 
 *Updated after each plan completion*
 
@@ -90,6 +91,11 @@ Recent decisions affecting v1.1 work:
 | Keep dialog open on error | Allow user to retry after create/update errors (close on delete errors) | Phase 15-02 |
 | Empty state with CTA | TableRow with colSpan, centered content, call-to-action button | Phase 15-02 |
 | DEFAULT_ORG_ID for v1.1 | Single-org constant marked for replacement when multi-tenancy added | Phase 15-02 |
+| Client-side factory name lookup | getFactoryName helper resolves UUID to name via client-side join | Phase 16-01 |
+| Factory filter query params | Computed params pattern for useGateways hook ensures proper cache invalidation | Phase 16-01 |
+| Password blank in edit defaultValues | GATEWAY-07 security - never populate password from server | Phase 16-01 |
+| Strip empty password in update | Prevent encrypting empty string by setting password: undefined if blank | Phase 16-01 |
+| Filter-aware empty states | Check filter state to show contextual messages with appropriate CTAs | Phase 16-01 |
 
 **Previous milestone decisions (v1.0):**
 - PostgreSQL + Kysely: Type-safe SQL, production-ready
@@ -123,12 +129,14 @@ None yet.
 - ✅ Phase 15 complete: Factory Management UI (2/2 plans complete)
   - ✅ 15-01: Sonner toast and AlertDialog components with app root integration
   - ✅ 15-02: Complete FactoriesPage with table, CRUD dialogs, toasts, loading states
+- ✅ Phase 16 complete: Gateway Management UI (1/1 plan complete)
+  - ✅ 16-01: Complete GatewaysPage with factory filtering, password security, CRUD operations
 
 ## Session Continuity
 
-Last session: 2026-02-09
-Stopped at: Completed 15-02-PLAN.md
+Last session: 2026-02-08
+Stopped at: Completed 16-01-PLAN.md
 Resume file: None
 
 ---
-*Last updated: 2026-02-09*
+*Last updated: 2026-02-08*
