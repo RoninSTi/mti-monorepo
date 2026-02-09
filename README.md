@@ -1,6 +1,6 @@
 # MTI WiFi Gateway Management System
 
-TypeScript/Node.js application for industrial vibration monitoring that manages factories, gateways, and sensor data collection via CTC Connect Wireless gateways. Provides a REST API for factory and gateway CRUD operations with encrypted credential storage.
+Full-stack TypeScript monorepo for industrial vibration monitoring. Manages factories, gateways, and sensor data collection via CTC Connect Wireless gateways. Includes REST API backend with encrypted credential storage and React web application for configuration management.
 
 ## Prerequisites
 
@@ -10,8 +10,10 @@ TypeScript/Node.js application for industrial vibration monitoring that manages 
 
 ## Getting Started
 
+This is a monorepo with two workspaces: `backend/` (REST API) and `frontend/` (React web app).
+
 1. Clone the repository
-2. Install dependencies:
+2. Install all workspace dependencies:
    ```bash
    npm install
    ```
@@ -21,7 +23,7 @@ TypeScript/Node.js application for industrial vibration monitoring that manages 
    ```
 4. Copy environment configuration:
    ```bash
-   cp .env.example .env
+   cp .env.example backend/.env
    ```
    Review and update environment variables as needed (see Configuration section below).
 5. Run database migrations:
@@ -32,16 +34,17 @@ TypeScript/Node.js application for industrial vibration monitoring that manages 
    ```bash
    npm run db:seed
    ```
-7. Start API server:
+7. Start both backend and frontend:
    ```bash
-   npm run dev:api
+   npm run dev
    ```
 
 The API server will be available at `http://localhost:3000`.
+The web application will be available at `http://localhost:5173`.
 
 ## Configuration
 
-Create a `.env` file in the project root with the following variables:
+Create a `.env` file in the `backend/` directory with the following variables:
 
 ### Database Configuration
 
@@ -76,10 +79,13 @@ Create a `.env` file in the project root with the following variables:
 
 ## Available Scripts
 
+All commands run from the repository root and use npm workspaces to route to the correct application.
+
 ### Development
 
-- `npm run dev:api` - Start API server in development mode with hot reload
-- `npm run dev` - Start gateway manager in development mode (Milestone 0)
+- `npm run dev` - Start both backend API and frontend dev servers concurrently
+- `npm run dev:api` - Start only the backend API server (port 3000)
+- `npm run dev:frontend` - Start only the frontend dev server (port 5173)
 
 ### Production
 
@@ -105,6 +111,20 @@ Create a `.env` file in the project root with the following variables:
 - `npm run docker:up` - Start PostgreSQL container
 - `npm run docker:down` - Stop PostgreSQL container
 - `npm run docker:reset` - Reset PostgreSQL container (destroys all data)
+
+### Workspace Commands
+
+To run commands in a specific workspace:
+
+```bash
+# Backend workspace
+npm run dev --workspace=backend
+npm test --workspace=backend
+
+# Frontend workspace
+npm run dev --workspace=frontend
+npm run build --workspace=frontend
+```
 
 ## API Endpoints
 
@@ -189,25 +209,37 @@ Common error codes:
 
 ## Project Structure
 
+This monorepo uses npm workspaces to manage two applications:
+
 ```
 .
-├── src/
-│   ├── api/              # REST API server (Fastify)
-│   │   ├── routes/       # API route handlers
-│   │   ├── schemas/      # Zod validation schemas
-│   │   ├── plugins/      # Fastify plugins (CORS, error handler, etc.)
-│   │   ├── app.ts        # Fastify app factory
-│   │   └── server.ts     # Server entry point
-│   ├── repositories/     # Data access layer (Kysely)
-│   ├── database/         # Database configuration and migrations
-│   │   ├── kysely.ts     # Kysely database client
-│   │   ├── seed.ts       # Sample data seeder
-│   │   └── types.ts      # Generated database types
-│   ├── gateway/          # Gateway connection management (Milestone 0)
-│   └── utils/            # Shared utilities (encryption, etc.)
-├── migrations/           # Database migration files
-└── .env                  # Environment configuration (create from .env.example)
+├── backend/              # REST API workspace
+│   ├── src/
+│   │   ├── api/         # Fastify REST API server
+│   │   │   ├── routes/  # API route handlers
+│   │   │   ├── schemas/ # Zod validation schemas
+│   │   │   └── plugins/ # Fastify plugins
+│   │   ├── repositories/ # Data access layer (Kysely)
+│   │   ├── database/    # Database config and types
+│   │   ├── gateway/     # Gateway connection (Milestone 0)
+│   │   └── utils/       # Shared utilities (encryption)
+│   ├── migrations/      # Database migrations
+│   ├── package.json     # Backend dependencies
+│   └── .env            # Backend environment config
+├── frontend/            # React web app workspace
+│   ├── src/
+│   │   ├── components/  # React components (UI, forms, layout)
+│   │   ├── hooks/       # React Query hooks
+│   │   ├── pages/       # Route page components
+│   │   ├── lib/         # API client and utilities
+│   │   └── types/       # TypeScript type definitions
+│   ├── package.json     # Frontend dependencies
+│   └── README.md       # Frontend-specific setup guide
+├── package.json         # Workspace orchestrator
+└── docker-compose.yml   # PostgreSQL container
 ```
+
+**For detailed frontend setup, see [`frontend/README.md`](./frontend/README.md).**
 
 ## License
 
