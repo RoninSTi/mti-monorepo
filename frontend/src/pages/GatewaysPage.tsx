@@ -156,9 +156,9 @@ export function GatewaysPage() {
   return (
     <div className="space-y-6">
       {/* Page header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Gateways</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">Gateways</h1>
           <p className="text-muted-foreground mt-1">
             Manage gateway connections
           </p>
@@ -170,12 +170,12 @@ export function GatewaysPage() {
       </div>
 
       {/* Factory filter dropdown */}
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
         <Label htmlFor="factory-filter">Filter by factory:</Label>
         <select
           id="factory-filter"
           className={cn(
-            'flex h-9 w-[200px] rounded-md border border-input bg-background px-3 py-1 text-sm shadow-xs transition-colors',
+            'flex h-9 w-full sm:w-[200px] rounded-md border border-input bg-background px-3 py-1 text-sm shadow-xs transition-colors',
             'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
             'disabled:cursor-not-allowed disabled:opacity-50'
           )}
@@ -209,82 +209,84 @@ export function GatewaysPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Factory</TableHead>
-                <TableHead>Gateway ID</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>URL</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Model</TableHead>
-                <TableHead>Firmware</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {gatewayData.data.length === 0 ? (
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
                 <TableRow>
-                  <TableCell colSpan={8} className="text-center py-8">
-                    <div className="flex flex-col items-center gap-2">
-                      <p className="text-muted-foreground">
-                        {factoryFilter
-                          ? 'No gateways for this factory'
-                          : 'No gateways yet'}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {factoryFilter
-                          ? 'Try selecting a different factory or clearing the filter.'
-                          : 'Create your first gateway to get started.'}
-                      </p>
-                      <Button
-                        onClick={() => setIsCreateDialogOpen(true)}
-                        variant="outline"
-                        className="mt-2"
-                      >
-                        <Plus className="h-4 w-4 mr-2" />
-                        Add Gateway
-                      </Button>
-                    </div>
-                  </TableCell>
+                  <TableHead>Factory</TableHead>
+                  <TableHead>Gateway ID</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>URL</TableHead>
+                  <TableHead className="hidden md:table-cell">Email</TableHead>
+                  <TableHead className="hidden lg:table-cell">Model</TableHead>
+                  <TableHead className="hidden lg:table-cell">Firmware</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
-              ) : (
-                gatewayData.data.map((gateway) => (
-                  <TableRow key={gateway.id}>
-                    <TableCell className="font-medium">
-                      {getFactoryName(gateway.factory_id)}
-                    </TableCell>
-                    <TableCell>{gateway.gateway_id}</TableCell>
-                    <TableCell>{gateway.name}</TableCell>
-                    <TableCell className="font-mono text-xs">
-                      {gateway.url}
-                    </TableCell>
-                    <TableCell>{gateway.email}</TableCell>
-                    <TableCell>{gateway.model || '\u2014'}</TableCell>
-                    <TableCell>{gateway.firmware_version || '\u2014'}</TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
+              </TableHeader>
+              <TableBody>
+                {gatewayData.data.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={8} className="text-center py-8">
+                      <div className="flex flex-col items-center gap-2">
+                        <p className="text-muted-foreground">
+                          {factoryFilter
+                            ? 'No gateways for this factory'
+                            : 'No gateways yet'}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {factoryFilter
+                            ? 'Try selecting a different factory or clearing the filter.'
+                            : 'Create your first gateway to get started.'}
+                        </p>
                         <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => setEditingGateway(gateway)}
+                          onClick={() => setIsCreateDialogOpen(true)}
+                          variant="outline"
+                          className="mt-2"
                         >
-                          <Pencil className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => setDeletingGateway(gateway)}
-                        >
-                          <Trash2 className="h-4 w-4" />
+                          <Plus className="h-4 w-4 mr-2" />
+                          Add Gateway
                         </Button>
                       </div>
                     </TableCell>
                   </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
+                ) : (
+                  gatewayData.data.map((gateway) => (
+                    <TableRow key={gateway.id}>
+                      <TableCell className="font-medium">
+                        {getFactoryName(gateway.factory_id)}
+                      </TableCell>
+                      <TableCell>{gateway.gateway_id}</TableCell>
+                      <TableCell>{gateway.name}</TableCell>
+                      <TableCell className="font-mono text-xs">
+                        {gateway.url}
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">{gateway.email}</TableCell>
+                      <TableCell className="hidden lg:table-cell">{gateway.model || '\u2014'}</TableCell>
+                      <TableCell className="hidden lg:table-cell">{gateway.firmware_version || '\u2014'}</TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex justify-end gap-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setEditingGateway(gateway)}
+                          >
+                            <Pencil className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setDeletingGateway(gateway)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
 

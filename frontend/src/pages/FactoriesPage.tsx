@@ -135,9 +135,9 @@ export function FactoriesPage() {
   return (
     <div className="space-y-6">
       {/* Page header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Factories</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">Factories</h1>
           <p className="text-muted-foreground mt-1">
             Manage your factory locations
           </p>
@@ -156,68 +156,70 @@ export function FactoriesPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Location</TableHead>
-                <TableHead>Timezone</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {data.data.length === 0 ? (
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-8">
-                    <div className="flex flex-col items-center gap-2">
-                      <p className="text-muted-foreground">No factories yet</p>
-                      <p className="text-sm text-muted-foreground">
-                        Create your first factory to get started.
-                      </p>
-                      <Button
-                        onClick={() => setIsCreateDialogOpen(true)}
-                        variant="outline"
-                        className="mt-2"
-                      >
-                        <Plus className="h-4 w-4 mr-2" />
-                        Add Factory
-                      </Button>
-                    </div>
-                  </TableCell>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Location</TableHead>
+                  <TableHead>Timezone</TableHead>
+                  <TableHead className="hidden md:table-cell">Created</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
-              ) : (
-                data.data.map((factory) => (
-                  <TableRow key={factory.id}>
-                    <TableCell className="font-medium">{factory.name}</TableCell>
-                    <TableCell>{factory.location || '—'}</TableCell>
-                    <TableCell>{factory.timezone}</TableCell>
-                    <TableCell>
-                      {new Date(factory.created_at).toLocaleDateString()}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
+              </TableHeader>
+              <TableBody>
+                {data.data.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={5} className="text-center py-8">
+                      <div className="flex flex-col items-center gap-2">
+                        <p className="text-muted-foreground">No factories yet</p>
+                        <p className="text-sm text-muted-foreground">
+                          Create your first factory to get started.
+                        </p>
                         <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => setEditingFactory(factory)}
+                          onClick={() => setIsCreateDialogOpen(true)}
+                          variant="outline"
+                          className="mt-2"
                         >
-                          <Pencil className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => setDeletingFactory(factory)}
-                        >
-                          <Trash2 className="h-4 w-4" />
+                          <Plus className="h-4 w-4 mr-2" />
+                          Add Factory
                         </Button>
                       </div>
                     </TableCell>
                   </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
+                ) : (
+                  data.data.map((factory) => (
+                    <TableRow key={factory.id}>
+                      <TableCell className="font-medium">{factory.name}</TableCell>
+                      <TableCell>{factory.location || '—'}</TableCell>
+                      <TableCell>{factory.timezone}</TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        {new Date(factory.created_at).toLocaleDateString()}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex justify-end gap-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setEditingFactory(factory)}
+                          >
+                            <Pencil className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setDeletingFactory(factory)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
 
