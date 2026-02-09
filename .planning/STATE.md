@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-02-08)
 
 Milestone: v1.1 Factory & Gateway Management UI
 Phase: 15 of 17 (Factory Management UI)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-02-09 — Completed 15-01-PLAN.md
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-02-09 — Completed 15-02-PLAN.md
 
-Progress: [███████████░░░░░░░░░] 59% (32 plans complete)
+Progress: [████████████░░░░░░░░] 61% (33 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 32 (M0 + v1.0 + v1.1)
+- Total plans completed: 33 (M0 + v1.0 + v1.1)
 - Average duration: 2 min
-- Total execution time: 1.06 hours
+- Total execution time: 1.07 hours
 
 **By Phase:**
 
@@ -41,11 +41,11 @@ Progress: [███████████░░░░░░░░░] 59% (32
 | 12. Frontend Foundation | 3/3 | 6min | 2min |
 | 13. Component Architecture | 3/3 | 8min | 3min |
 | 14. API Integration Layer | 2/2 | 1min | 1min |
-| 15. Factory Management UI | 1/2 | 3min | 3min |
+| 15. Factory Management UI | 2/2 | 4min | 2min |
 
 **Recent Trend:**
-- Last 5 plans: 13-03 (2min), 14-01 (1min), 14-02 (<1min), 15-01 (3min)
-- Trend: Phase 15 started - UI component installation 3min
+- Last 5 plans: 14-01 (1min), 14-02 (<1min), 15-01 (3min), 15-02 (1min)
+- Trend: Phase 15 complete - Factory Management UI 2min/plan avg
 
 *Updated after each plan completion*
 
@@ -85,6 +85,11 @@ Recent decisions affecting v1.1 work:
 | Sonner for toast notifications | shadcn/ui integration, excellent UX, app-wide availability | Phase 15-01 |
 | Hardcode light theme in Toaster | No dark mode in v1.1, avoid next-themes dependency | Phase 15-01 |
 | Fix shadcn CLI generated bugs | CLI creates literal @/ directory, incorrect imports need manual fix | Phase 15-01 |
+| Page-level UI state only | Dialog open/close, selected items - React Query manages all data state | Phase 15-02 |
+| Toast try/catch pattern | Simple success/error pattern vs promise toast for cleaner control flow | Phase 15-02 |
+| Keep dialog open on error | Allow user to retry after create/update errors (close on delete errors) | Phase 15-02 |
+| Empty state with CTA | TableRow with colSpan, centered content, call-to-action button | Phase 15-02 |
+| DEFAULT_ORG_ID for v1.1 | Single-org constant marked for replacement when multi-tenancy added | Phase 15-02 |
 
 **Previous milestone decisions (v1.0):**
 - PostgreSQL + Kysely: Type-safe SQL, production-ready
@@ -115,13 +120,14 @@ None yet.
 - ✅ Phase 14 complete: API Integration Layer (2/2 plans complete)
   - ✅ 14-01: Factory CRUD hooks with query key factory and global error handling
   - ✅ 14-02: Gateway CRUD hooks with factory filtering and optimistic updates
-- ⏳ Phase 15: Factory Management UI (1/2 plans complete)
+- ✅ Phase 15 complete: Factory Management UI (2/2 plans complete)
   - ✅ 15-01: Sonner toast and AlertDialog components with app root integration
+  - ✅ 15-02: Complete FactoriesPage with table, CRUD dialogs, toasts, loading states
 
 ## Session Continuity
 
 Last session: 2026-02-09
-Stopped at: Completed 15-01-PLAN.md
+Stopped at: Completed 15-02-PLAN.md
 Resume file: None
 
 ---
